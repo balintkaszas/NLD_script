@@ -168,109 +168,6 @@ $u(t) = \vert x(t,x_0) - x(t,\tilde{x}_0) \vert$ , $C = \vert x_0 - \tilde{x}_0 
 \end{solution}
 
 
-\begin{solution}[2.2]
-Pendulum equation:
-\begin{align}
-	\ddot{x} + k\dot{x} + \sin(x) = a \sin(t)
-\end{align}
-where $k \geq 0$ and $a \geq 0$
-
-The first order system representation car be written as
-\begin{align}
-	z_1 &= x, \quad z_2 = \dot{x} \\
-	\begin{bmatrix}
-		\dot{z}_1 \\
-		\dot{z}_2
-	\end{bmatrix} &= \begin{bmatrix}
-		z_2 \\
-		a\sin(t) - kz_1 - \sin(z_1)
-	\end{bmatrix}
-\end{align}
-
-Here is the Matlab code to produce the flowmap. 
-\begin{verbatim}
-%% Initialize script
-
-close all
-clear
-clc
-
-%% Grid of initial conditions
-
-xs = linspace(-pi,pi,100);
-ys = linspace(-pi,pi,100);
-[X0, Y0] = meshgrid(xs,ys);
-
-%% ODE simulation
-
-t0 = 20;
-tend = 0;
-
-XF = zeros(size(X0));
-YF = zeros(size(Y0));
-
-for i = 1:size(X0,1)
-    for j = 1:size(X0,2)
-        x0 = X0(i,j);
-        y0 = Y0(i,j);
-        
-        [t, z] = ode45(@odefun, [t0 tend], [x0,y0]);
-        
-        XF(i,j) = z(end,1);
-        YF(i,j) = z(end,2);
-    end
-end
-
-%% Deformation Gradient
-
-[DFxx, DFxy] = gradient(XF, xs, ys);
-[DFyx, DFyy] = gradient(YF, xs, ys);
-
-%% Cauchy Green Strain Tensor Components
-
-C11 = DFxx.^2 + DFyx.^2;
-C12 = DFxx.*DFxy + DFyx.*DFyy;
-C21 = C12;
-C22 = DFxy.^2 + DFyy.^2;
-
-%% Largest eigenvalue of Cauchy Green Strain Tensor
-
-detC = C11.*C22 - C12.*C21;
-traceC = C11 + C22;
-
-lambda = real(traceC./2 + sqrt((traceC./2).^2 - detC));
-
-%% PLot FTLE
-
-FTLE = log(lambda)/(2*abs(tend-t0));
-
-figure(1)
-title('FTLE${}^{20}_0$', 'interpreter', 'latex')
-surf(X0,Y0, FTLE, 'EdgeColor','none');
-colorbar
-
-axis tight
-xlabel('$x$', 'interpreter','latex')
-ylabel('$\dot{x}$', 'interpreter','latex')
-
-
-
-%% Function to simulate
-
-function [rhs] = odefun(t,X)
-    a = 0.0; % or 0.5
-    k = 0.0; % or 0.1
-    
-    x = X(1);
-    xd = X(2);
-    
-    rhs = [xd;
-            a*sin(t) - sin(x) - k*xd];
-end
-\end{verbatim}
-\end{solution}
-
-
 \begin{solution}[2.3]
 \begin{align}
 	\begin{dcases}
@@ -732,34 +629,6 @@ For $P_2$ and $P_3$ to be unstable, we must have $d_3 < 0$
 \end{align}
 
 \item
-\begin{verbatim}
-	%% Initiate Script
-	close all
-	clear all
-	clc
-	
-	%% Params & Initial Condition
-	
-	a = 10;
-	b = 28;
-	c = 8/3;
-	
-	x0 = [0.101; 0.1; 0.1];
-	
-	%% Function & Simulation
-	
-	f = @(t,x) [a * (x(2) - x(1));
-	            b * x(1) - x(2) - x(1) * x(3);
-	            x(1) * x(2) - c * x(3)];
-	        
-	[t ,x] = ode45(f, [0, 1000], x0);
-	
-	%% Plot
-	
-	figure(1)
-	hold on
-	plot3(x(:,1), x(:,2),x(:,3))
-\end{verbatim}
 
 \begin{figure}[h]
 	\centering
@@ -887,44 +756,6 @@ For $P_2$ and $P_3$ to be unstable, we must have $d_3 < 0$
 \begin{align}
 	d_3 < 0 \Longleftrightarrow b > \frac{a(3 + a + c)}{a - (c + 1)} \underbrace{>}_{\text{follows from }a>c+1} 1
 \end{align}
-
-\item
-\begin{verbatim}[numbers = left]
-	%% Initiate Script
-	close all
-	clear all
-	clc
-	
-	%% Params & Initial Condition
-	
-	a = 10;
-	b = 28;
-	c = 8/3;
-	
-	x0 = [0.101; 0.1; 0.1];
-	
-	%% Function & Simulation
-	
-	f = @(t,x) [a * (x(2) - x(1));
-	            b * x(1) - x(2) - x(1) * x(3);
-	            x(1) * x(2) - c * x(3)];
-	        
-	[t ,x] = ode45(f, [0, 1000], x0);
-	
-	%% Plot
-	
-	figure(1)
-	hold on
-	plot3(x(:,1), x(:,2),x(:,3))
-\end{verbatim}
-
-\newpage
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.48]{figures/solutions/ch3/S03D01.pdf}
-	\caption{Simulation of the Lorenz equations.}
-\end{figure}
 \end{enumerate}
 \end{solution}
 
@@ -1119,79 +950,6 @@ The following figure shows the iterations of the map for four initial conditions
 	y = \frac{1}{\lambda - 1}x^2
 \end{align}
 
-
-\begin{verbatim}
-	%% Initiation
-
-	close all
-	clear all
-	clc
-
-	%% Main
-
-	lambda = 0.5;
-	x = linspace(-0.5, 0.5, 50);
-	
-	y = x.^2/(lambda - 1);
-	
-	figure;
-	plot(x,y)
-	
-	maxIter = 1000;
-	
-	xn = zeros(maxIter + 1, 1);
-	yn = zeros(maxIter + 1, 1);
-	
-	% Initial Conditions
-	
-	xn1(1) = -0.1;
-	yn1(1) = 0.1;
-	
-	xn2(1) = 0.1;
-	yn2(1) = 0.1;
-	
-	xn3(1) = -0.25;
-	yn3(1) = 0.25;
-	
-	xn4(1) = 0.25;
-	yn4(1) = 0.25;
-	
-	% Interations
-	
-	for j = 1:maxIter
-	    [xn1(j+1), yn1(j+1)] = map(xn1(j), yn1(j), lambda);
-	end
-	
-	for j = 1:maxIter
-	    [xn2(j+1), yn2(j+1)] = map(xn2(j), yn2(j), lambda);
-	end
-	
-	for j = 1:maxIter
-	    [xn3(j+1), yn3(j+1)] = map(xn3(j), yn3(j), lambda);
-	end
-	
-	for j = 1:maxIter
-	    [xn4(j+1), yn4(j+1)] = map(xn4(j), yn4(j), lambda);
-	end
-	
-	hold on
-	plot(xn1, yn1, '*r')
-	plot(xn2, yn2, '*r')
-	plot(xn3, yn3, '*g')
-	plot(xn4, yn4, '*g')
-	xlabel('$x$','interpreter','latex')
-	ylabel('$y$','interpreter','latex')
-	grid on
-		
-	%% Function
-	
-	function [x1, y1] = map(x0, y0, lambda)
-	    x1 = x0 + x0 * y0;
-	    y1 = lambda * y0 - x0^2;
-	end
-\end{verbatim}
-
-This MATLAB code gives the following figure:
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.5]{figures/solutions/ch4/S01D02.pdf}
@@ -1942,7 +1700,7 @@ For a steady flow, $\frac{\partial \rho}{\partial t} = 0$, which means $\rho \ma
 
 If we extend $\rho \mathbf{v}$ to be a 3 dimensional vector, the above relation means that there is a vector-potential $\mathbf{A}:\mathbb{R}^3\to \mathbb{R}^3$. In particular, with a scalar function $\Psi:\mathbb{R}^2 \to \mathbb{R}$,
 \begin{align}
-\begin{bmatrix}\rho u \\ \rho v\\ 0 \end{bmatrix}=\text{rot } \mathbf{A} = \text{rot } \begin{bmatrix} 0 \\ 0 \\ \Psi \end{bmatrix} = \begin{bmatrix} \partial_y \Psi \\ -\partial_x \Psi \\ 0 \end{bmatrix}. 
+\begin{bmatrix}\rho u \\ \rho v\\ 0 \end{bmatrix}=\text{curl } \mathbf{A} = \text{curl } \begin{bmatrix} 0 \\ 0 \\ \Psi \end{bmatrix} = \begin{bmatrix} \partial_y \Psi \\ -\partial_x \Psi \\ 0 \end{bmatrix}. 
 \end{align}
 
 The (massless) fluid particles' motion obeys the differential equation
@@ -2978,11 +2736,248 @@ which converges if $x=x_p$. $W^u_\text{loc}(\gamma) = \{ (x,y,z): x=x_p, y=0\}$.
 \end{solution}
 
 \begin{solution}[9.6]
-TODO	
+Consider the slowly forced pendulum with viscous damping
+
+\begin{equation*}
+    \label{eq1}\ddot{\varphi} + k\dot{\varphi} + \sin \varphi = F_0 \sin (\varepsilon t)
+\end{equation*}
+$k>0$ is the damping coefficient, $F_0<1$ and $0<\varepsilon \ll 1$. 
+To write the system in first order, autonomous form, let $v = \dot{\varphi}$ and $\psi = \varepsilon t$. 
+
+\begin{align*}
+    \dot{\varphi} & = v \\
+    \dot{v} & = -k v - \sin \varphi + F_0 \sin \psi \\
+    \dot{\psi} &= \varepsilon.
+\end{align*}
+This is a problem that has separated timescales, and can be viewed as a singularly perturbed problem, on the fast timescale. Here, $\varphi$ and $v$ are the fast variables, while $\psi$ is the slow variable. Setting $\varepsilon = 0$, we get the fast subsystem:
+
+\begin{align*}
+    \dot{\varphi} & = v \\
+    \dot{v} & = -k v - \sin \varphi + F_0 \sin \psi \\
+    \dot{\psi} &= 0.
+\end{align*}
+
+To obtain the critical manifold $C_0$, we look for fixed points of this system. Because of the first equation, we must have $v=0$. Substituting it into the second equation, we get
+\begin{equation*}
+    0 = -\sin \varphi + F_0 \sin \psi.
+\end{equation*}
+
+Since $F_0<1$, this has has two solutions for all $\psi$. 
+\begin{equation}
+\label{root1}
+    \varphi_1(\psi) = \text{arcsin}(F_0 \sin \psi)
+\end{equation}
+
+or
+\begin{equation}
+\label{root2}
+    \varphi_2(\psi) = -\text{arcsin}(F_0 \sin \psi) + \pi.
+\end{equation}
+
+The extended phase space is spanned by the variables $(\varphi, v, \psi)$. But since $\varphi$ and $\psi$ are cyclic, the phase space can be viewed as the manifold $S^1 \times S^1 \times \mathbb{R}  \sim T^2 \times \mathbb{R}$. Because we were able to write the fixed points as a graph over $\psi$, the critical manifold is
+
+$$
+C_0 = \{ (\varphi, \psi, v) \in S^1 \times S^1 \times \mathbb{R} : v = 0, \varphi = \text{arcsin}(F_0 \sin \psi), \varphi = -\text{arcsin}(F_0 \sin \psi) + \pi
+\}.
+$$
+This is a union of two disjoint curves. The normal hyperbolicity of the manifold depends on the hyperbolicity of the fixed points, in the fast subsystem. 
+
+\begin{align*}
+    \frac{d}{dt}\begin{bmatrix}
+    \varphi \\
+    v 
+    \end{bmatrix} &= \begin{bmatrix} 
+     v \\
+    -k v - \sin \varphi + F_0 \sin \psi 
+    \end{bmatrix} := f(\varphi, v) \\
+    \dot{\psi} &= 0 
+\end{align*}
+The Jacobian matrix $D_{\varphi, v} f(\varphi,v)$ is
+$$
+D_{\varphi, v} f(\varphi,v) = \begin{bmatrix} 
+0 & 1 \\
+-\cos \varphi & -k
+\end{bmatrix},
+$$
+
+which we have to evaluate at the points (\ref{root1}) and (\ref{root2}) and look for its eigenvalues. The characteristic polynomial is 
+$$
+\lambda^2  + k \lambda + \cos \varphi_{1,2}(\psi) = 0,
+$$
+with roots
+
+\begin{equation}
+\label{eigen}
+    \lambda_{\pm} =  -\frac{k}{2} \pm \sqrt{\frac{k^2}{4} - \cos \varphi_{1,2}(\psi)}.
+\end{equation}
+
+Here, by substituting (\ref{root1}) and (\ref{root2}), we get
+$$
+\cos \varphi_1 = \cos (\text{arcsin}(F_0\sin \psi) ) = \sqrt{1 - F_0^2 \sin^2 \psi} >0
+$$
+and
+$$
+\cos \varphi_2 = \cos (-\text{arcsin}(F_0\sin \psi)+\pi) = -\cos( \text{arcsin}(F_0\sin \psi)) = - \sqrt{1 - F_0^2 \sin^2 \psi} <0,
+$$
+by the properties $\cos(\pi - \theta) = - \cos \theta$ and $\cos(\text{arcsin}(x)) = \sqrt{1-x^2}$.
+Evaluating (\ref{eigen}) at these points, we see that in case of the first root, $\varphi_1$, the square root is strictly smaller than $k/2$, both eigenvalues are negative.
+At the root $\varphi_2$, the square root is strictly larger than $k/2$, which means $\lambda_+$ becomes positive. 
+
+Both fixed-curves $\varphi_{1,2}(\psi)$ of the fast subsystem are hyperbolic, $\varphi_1$ is asymptotically stable and $\varphi_2$ is unstable. This means that the critical manifold $C_0$ is a normally hyperbolic invariant manifold. 
+
+The full system is an $\varepsilon$-size perturbation to the fast subsystem, and we can conclude that there exists a normally hyperbolic invariant manifold $C_\varepsilon$, $\varepsilon$ close to $C_0$, which is the slow manifold. 
+
+The full extended phase space $S^1 \times S^1 \times \mathbb{R}$, can be viewed as the product of a 2-torus and the real line. The critical manifold (and $\varepsilon$ close to it, the slow manifold) then, is an union of two curves, that run on the 2-torus, corresponding to the section $v=0$. 
+
+We can represent this torus as an embedded submanifold of $\mathbb{R}^3$, parametrized by $(\varphi, \psi)$. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 0.5\textwidth]{figures/solutions/ch9/torus.png}
+    \caption{Slow manifold of the slowly forced pendulum. The torus shown is the $v=0$ section of phase space. The colored curves make up the slow manifold, the blue one is $\varphi_1(\psi)$ and the red one is $\varphi_2(\psi)$. }
+    \label{fig:t}
+\end{figure}
+The slow manifold is shown in Fig. \ref{fig:t}. The red curve is the unstable part of $C_\varepsilon$ and the blue one is the stable part. 
+They trace out closed curves, $\varphi_1$ oscillating between $-\text{arcsin}(F_0)$ and $\text{arcsin}(F_0)$ and $\varphi_2$ between $\pi + \text{arcsin}(F_0)$ and $\pi-\text{arcsin}(F_0)$. 
+In the extended phase space, $S^1 \times S^1 \times \mathbb{R}$ (the torus shown is just a submanifold of this), 
+the curve $\varphi_2$ has a local stable manifold and an unstable manifold. Trajectories in the stable manifold would converge to $\varphi_2$, while all other nearby trajectories would converge to $\varphi_1$. 
 \end{solution}
 
 \begin{solution}[9.7]
-TODO	
+Stommel's model for the Thermohaline circulation is 
+\begin{align}
+   \label{eqstomm}
+    \dot{x} &= -\frac{1}{\tau_x}(x-1) + \frac{1}{\tau_y}x[1+\eta^2(x-y)^2] \\
+    \dot{y} & = \frac{\mu}{\tau_y} - \frac{1}{\tau_y}y[1+\eta^2(x-y)^2].
+\end{align}
+The variables are $x,y$, where $x(t)$ is the temperature-gradient and $y(t)$ is the salinity gradient. The parameter $\mu$ is the freshwater flux, $\eta$ is the nonlinear coupling constant. The relaxation times for the two processes are $\tau_x$ and $\tau_y$, which satisfy $\tau_x/\tau_y = \varepsilon \ll 1$.
+
+(a) Show that Stommel's model has a globally attracting slow manifold that governs the asymptotic behavior of THC. Find a leading order approximation to this manifold. 
+
+\emph{Solution}
+
+Introducing the new timescale $s=t\tau_y$, $d/dt = 1/\tau_y d/ds$:
+\begin{align*}
+    \frac{1}{\tau_y}\frac{dx}{ds} &= -\frac{1}{\tau_x}(x-1) + \frac{1}{\tau_y}x[1+\eta^2(x-y)^2] \\
+    \frac{1}{\tau_y}\frac{dy}{ds} & = \frac{\mu}{\tau_y} - \frac{1}{\tau_y}y[1+\eta^2(x-y)^2].
+\end{align*}
+Using the definition of $\varepsilon$, we have the singular perturbation problem, with $x$ the fast variable and $y$ the slow variable. 
+\begin{align}
+\label{eqfast1}
+    \varepsilon\frac{dx}{ds} &= -(x-1) + \varepsilon x[1+\eta^2(x-y)^2]:=f(x,y,\varepsilon) \\
+    \label{eqfast2}
+    \frac{dy}{ds} & = \mu - y[1+\eta^2(x-y)^2] :=g(x,y).
+\end{align}
+Switching timescales again, by $s=\varepsilon \tau$ and denoting the differentiation with respect to $\tau$, by $(\cdot)'$ 
+\begin{align*}
+    x' &= -(x-1) + \varepsilon x[1+\eta^2(x-y)^2] \\
+    y' & = \varepsilon\left(\mu - y[1+\eta^2(x-y)^2]\right).
+\end{align*}
+Setting $\varepsilon = 0$, we get the fast subsystem:
+$$
+x' = -(x-1) 
+$$
+and $y' = 0$.
+
+We look for the fixed point of this subsystem, which is $x=1$, for any $y$, which means we can write the critical manifold as
+\begin{equation}
+    C_0 = \{ (x,y): x = 1\}. 
+\end{equation}
+The stability of the critical manifold depends on the stability of the fixed point $x=1$ in the fast subsystem. Since 
+
+$$
+\frac{d}{dx}f(x,y,0) = -1
+$$
+this fixed point is hyperbolic and also attracting with a rate $e^{-\tau}$. Because of this, the critical manifold $C_0$ is a normally attracting invariant manifold for the system, for $\varepsilon = 0$. 
+
+As a result of Fenichel's theorem, we conclude that for small enough $\varepsilon$, there is a normally attracting invariant manifold $C_\varepsilon$ for the system (\ref{eqstomm}), which is $O(\varepsilon)$ close to $C_0$. This is the slow manifold, which we can represent as a graph
+
+$$
+C_\varepsilon = \{ (x,y): x = \varphi(y,\varepsilon)\}.
+$$
+Because of the smoothness properties, we can expand it in terms of $\varepsilon$: $x = \varphi(y,\varepsilon) = \varphi_0(y) + \varepsilon \varphi_1(y) + O(\varepsilon^2) = 1+\varphi_1(y)+O(y^2)$.
+
+
+On one hand, on the manifold we have $x = \varphi(y,\varepsilon)$, which we can differentiate with respect to $\tau$.
+\begin{equation}
+    \label{eq11}
+    x' = \frac{d \varphi}{d y} y' = \varepsilon^2 \frac{d\varphi_1(y)}{dy}\left( \mu- y -y\eta^2(1+\varepsilon\varphi_1(y) -y)^2\right) = O(\varepsilon^2).
+\end{equation}
+
+On the other hand, we can use the $x'$ equation restricted to the manifold. 
+\begin{align*}
+        \label{eq22}
+    x' &= f(\varphi(y,\varepsilon),y,\varepsilon) = -\varepsilon \varphi_1(y) + \varepsilon x[1+\eta^2(x-y)^2]= \\
+    &= -(x-1) + \varepsilon x[1+\eta^2(x^2-2xy + y^2)] = \\
+    &= -\varepsilon\varphi_1(y) + \varepsilon + \varepsilon \eta^2(1-2y +y^2) +O(\varepsilon^2).
+\end{align*}
+For the manifold to be invariant, these two expressions must match in all orders of $\varepsilon$. Since in (\ref{eq11}), there were no order $\varepsilon$ terms, we must get 0 for the coefficient of the $O(\varepsilon)$ term in the latter expression. This means
+
+$$
+\varphi_1(y)= 1 + \eta^2(1-y)^2.
+$$
+
+To leading-order, the slow manifold is described by the graph $x = 1 + \varepsilon(1+\eta^2(1-y)^2)$.
+
+(b) Compute the leading-order reduced flow on the slow manifold. Determine qualitatively the possible dynamical behaviors on the slow manifold as the parameters $\mu$ and $\eta$ are varied.
+
+\emph{Solution}
+
+To derive the reduced order flow, we Taylor-expand the equation governing the slow variable (on the original timescale, $s$):
+
+\begin{equation*}
+    g(x,y) = g(\varphi_0(y), y) + \varepsilon\left(\frac{d g}{dx}|_{(\varphi_0(y),y)}\right)\varphi_1(y) + O(\varepsilon^2)
+\end{equation*}
+From (\ref{eqfast2}), $g(x,y)= \mu - y[1+\eta^2(x-y)^2]$
+$$
+g(x,y) = \mu - y[1+\eta^2(1-y)^2] -2 \varepsilon\varphi_1(y)\eta^2y(1-y) + O(\varepsilon^2)
+$$
+Plugging in the expression for $\varphi_1$, we have
+
+$$
+g(x,y) = \mu - y[1+\eta^2(1-y)^2] -2 \varepsilon(1 + \eta^4y(1-y)^3) + O(\varepsilon^2)
+$$
+Keeping only the leading order term, we get the reduced dynamics on the slow manifold
+$$
+\frac{dy}{ds} = \mu - y[1+\eta^2(1-y)^2].
+$$
+
+On the slow manifold, the long time behavior of solutions is dictated by the fixed points. They are the roots of the right hand side:
+
+$$
+\mu = y[1+\eta^2(1-y)^2]
+$$
+
+The graph of these functions are shown in Fig. \ref{fig:c}. The fixed points of the system are given by the intersection points. 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = 0.4\textwidth]{figures/solutions/ch9/cubic.png}
+    \caption{Graphs of the functions $f(y) = \mu$ and $f(y)= y[1+\eta^2(1-y)^2]$.}
+    \label{fig:c}
+\end{figure}
+To see the effect of the parameters, note that the shape of the cubic function is only governed by $\eta$. It can have at most two critical points, one minimum and one maximum. These are:
+$$
+\frac{d}{dy}y[1+\eta^2(1-y)^2] =0
+$$
+
+$$
+1 + \eta^2(1-y)^2 - 2y \eta^2 (1-y) = 0
+$$
+
+$$
+3\eta^2 y^2 - 4y\eta^2 +1 + \eta^2 = 0.
+$$
+This equation has two roots (the minimum and maximum of the cubic function) if 
+$$
+16\eta^4 - 12\eta^2(1+\eta^2) > 0,
+$$
+or $\eta^2 > 3$. In this case, the intersection of this graph with $y=\mu$ can give 1, 2 or 3 values. If $y$ is smaller or larger than any of the critical values of the graph, there is only one solution. In these cases the right hand side of the system $\mu - y[1+\eta^2(1-y)^2]$ changes sign at the fixed points, and they are stable. 
+
+When $\mu$ reaches (one of) the critical values, a new fixed point appears in a bifurcation.
+
+When $\mu$ is between the critical values, we have 3 fixed points, two stable and one unstable. 
+
+When the above discriminant is 0, at $\eta^2 = 3$,  the cubic graph has only one critical point, and for all values of $\mu$ we only have one fixed point. This fixed point is stable. 
 \end{solution}
 
 \begin{solution}[9.8]
