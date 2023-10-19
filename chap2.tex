@@ -275,7 +275,59 @@ Therefore $\lambda$ must be an eigenvalue of ${A}$ and ${s} $ must be the corres
 
 	\end{enumerate}
 \end{itemize}
+\subsection{Evolution of observable functions}
+A common narrative originating from the operator-theoretic approach to dynamical systems, is that {\em all dynamical systems become linear when rewritten in terms of observables}. Let us consider the dynamical system given by 
+\begin{equation}
+\label{eq:koopman_eq1}
+\dot{x} = f(x), \quad x\in \mathbb{R}^n,
+\end{equation}
+and also the observable function defined on the phase space $\mathbb{R}^n$
+\begin{equation}
+g : \mathbb{R}^n\to \mathbb{R}^k.
+\end{equation}
 
+To evaluate the function along trajectories of the dynamical system \eqref{eq:koopman_eq1} we can take the composition of $g$ and the flowmap $F^t$, which, for an initial condition $x_0\in \mathbb{R}^n$ returns
+\begin{equation}
+g\left(x(t, x_0)\right) = g \circ F^t(x_0).
+\end{equation}
+We can introduce the Koopman operator acting on observable functions as 
+\begin{equation}
+\mathcal{K}^t : \mathcal{C}^1 \to \mathcal{C}^1,
+\end{equation}
+realizing the composition with the flowmap, i.e. 
+\begin{equation}
+\label{eq:koopman_eq2}
+\mathcal{K}^t: g(x_0) \mapsto \left[\mathcal{K}^t g\right](x_0) = g\circ F^t(x_0) = g(x(t,x_0)).
+\end{equation} 
+
+Note that the Koopman operator defined as \eqref{eq:koopman_eq2} is linear. Indeed, its action on a linear combination of observable functions $\alpha_1 g_1 + \alpha_2 g_2$ is simply
+\begin{align}
+\left[\mathcal{K}^t(\alpha_1 g_1 + \alpha_2 g_2)\right](x_0) &= [\alpha_1 g_1 + \alpha_2 g_2]\circ F^t(x_0) \\
+ &= \alpha_1 g_1(x(t,x_0)) + \alpha_2 g_2(x(t,x_0)) \\
+ & = \alpha_1(g_1 \circ F^t) + \alpha_2 (g_2 \circ F^t) \\
+ & = \alpha_1 \left[\mathcal{K}^tg_1\right](x_0) + \alpha_2 \left[\mathcal{K}^tg_2\right](x_0).
+\end{align}
+The Koopman-operator thus is a linear operator acting on $\mathcal{C}^1$, i.e. the space of functions, which is infinite-dimensional. A common narrative is, that the difficulty of solving the finite-dimensional nonlinear system can be sidestepped by investigating the dynamics of observables. The observables are advected by the linear Koopman operator, which gives hope that the dynamics of these observables may be also linear. This statement, however, is false. 
+
+Let us derive the evolution of equation of an observable. Differentiating the action of the Koopman operator, we get
+\begin{equation}
+\frac{d}{dt}\left[\mathcal{K}^t g\right](x_0) = D_x g(x(t,x_0)) f(x(t,x_0)) =\mathcal{K}^t \left[D_x g\right](x_0) \left[\mathcal{K}^t f\right](x_0).
+\end{equation}
+The operator on the right-hand side $\mathcal{K}^t \left[D_x g\right](x_0)$, is not a linear operator on $\mathcal{K}^t g$. Therefore, the time evolution of $\mathcal{K}^t g$ is not governed by a linear operator, i.e. it is not of the form 
+\begin{equation}
+\mathcal{K}^t g = \Psi(t)\mathcal{K}^0 g = \Psi(t) g,
+\end{equation}
+for some $\Psi(t)$ operator. 
+
+The exception is, when $g$ is chosen to be an eigenfunction of the Koopman operator. In this case, we may write
+\begin{equation}
+\mathcal{K}^t g_0 = e^{\lambda t}g_0, \quad \text{for some eigenvalue } \lambda\in \mathbb{C}.
+\end{equation}
+In this case, the time evolution of $g_0$ is indeed linear, since
+\begin{equation}
+\frac{d}{dt}\mathcal{K}^t g_0 = \lambda \mathcal{K}^t g_0.
+\end{equation}
+However, constructing such Koopman eigenfunctions is generally a very difficult task. In addition, $g_0$ may not even exist, or the spectrum of $\mathcal{K}^t$ may be continuous. 
 \section{Stability of fixed points in autonomous linear systems}
 First we note that we can bound our solution
 \begin{align*}
