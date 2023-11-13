@@ -397,6 +397,12 @@ The system exhibits full spatial symmetry in $x$ and $y$, hence the eigenmodes w
 We have that $ \textrm{Re} \lambda _{k}=0$ for $k=1,2,3,4$. Also $a_k=2$ for $k=1,2,3,4$. Now assume $g_k < 2$. Then there would exists solutions of the form $te^{\pm i \omega t}{s}_k$, but this would contradict the conservation of energy, as either the (nonnegative) kinetic energy and/or the (nonnegative) potential energy would grow unbounded. Hence, the total energy could not be conserved. Therefore we know that $g_k = a_k$ and we can apply (ii) to find $x=y=0$ is Lyapunov stable for the linearized system. What does this imply for the nonlinear system?
 \end{ex}
 
+\notebookbox{
+\begin{notebook}
+\href{https://drive.google.com/file/d/1U1r0C_cEhg6_cz2zG-a4f8cL6EbbJ56Q/view?usp=sharing}{Comparison of two-dimensional phase portraits for various eigenvalue configurations.}
+\end{notebook}
+}
+
 \begin{exercise}
 Consider a discrete dynamical system given by the iterated mapping
 \begin{align}
@@ -810,6 +816,12 @@ Assume the following
 Then the following holds: $\dot{x}=f(x)$ with $f(0)=0$ is locally $\mathcal{C}^{r}$ conjugate to its linear part $\dot{y}=Ay$ for $A= Df(0)$.
 \end{theorem}
 
+\notebookbox{
+\begin{notebook}
+Calculation of the linearizing transformation as described by Sternberg's theorem.
+\end{notebook}
+}
+
 
 \begin{ex}[Watt's centrifugal governor for steam engines]
 	Now we put together everything built until now in the example of Watt's centrifugal governor for steam engines. Originally this system was used in mills in the 1700's, then it was adapted by Watt to the steam engine in 1788. This adaptation has been credited as a major factor in the industrial revolution, and is a first example of feedback control. The system is outlined in Fig. \ref{fig:governor}.
@@ -925,6 +937,11 @@ These have the effect of pushing the eigenvalues to the right in the complex pla
 	\label{fig:watt_eigv}
 \end{figure}
 \end{ex}
+\notebookbox{
+\begin{notebook}
+Analysis of the equations of motion for Watt's governor.
+\end{notebook}
+}
 \newpage
 
  \section{Data-driven linear modeling of dynamical systems}
@@ -1004,6 +1021,12 @@ B &= YX^T(XX^T)^\dagger \\
 We denote the truncated approximation of $B$ as $B_r = Y (X_r)^\dagger.$
 \end{enumerate}
 \end{remark}
+	
+\notebookbox{
+\begin{notebook}
+\href{https://drive.google.com/file/d/1B94k8jgRjdWPvTOAK8tHCXcZoGW8wdPZ/view?usp=sharing}{Finding approximate linear models with DMD.} 
+\end{notebook}
+}
 	
 \begin{exercise}
 Consider the damped pendulum equation

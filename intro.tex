@@ -31,6 +31,13 @@ Corresponding to these there are various types of evolution rules
 	\begin{align}
 		\boxed{  {x}_{n+1}=F( {x}_n) = F(F( {x}_{n-1})) = \underbrace{F \circ \ldots \circ F}_{n+1 \textrm{ times} }( {x}_0) = F^{n+1}( {x}_0).}
 	\end{align}
+	
+	\notebookbox{
+	\begin{notebook}
+	\href{https://drive.google.com/file/d/1lG6Kim0M7VnV_mxkSry7T9L_ui1qZcgr/view?usp=sharing}{Construction of the cobweb diagram}
+	\end{notebook}
+}
+
 \begin{ex}[Cobweb diagram of a one-dimensional DDS]
 	In such cases and in one-dimensional problems, a simple way to analyze the behavior of the system is the so-called \textit{cobweb} diagram. We may plot $x_{n+1}$ as a function of $x_{n}$, as demonstrated in Fig. \ref{fig:cobweb}. The image of an initial condition $x_0$ lies on the graph at $x_{n+1}=F(x_0)$. We can also compute the next iterate by horizontally projecting the point $(x_0, F(x_0))$ to the diagonal line defined by $x_{n+1}= x_n$. Following the projection of this point to the horizontal axis $(x_n)$ we find the intersection with the graph at the point $(x_1, F(x_1))$. It follows that fixed points on the cobweb diagram correspond to the intersection of the graph of $F$ with the diagonal line $x_{n+1}= x_n$.
 	\begin{figure}[h!]

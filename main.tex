@@ -30,6 +30,8 @@
 
 \usepackage{xcolor}
 \definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
 
 \usepackage{hyperref}
 \hypersetup{colorlinks,breaklinks,urlcolor=linkcolour, linkcolor=linkcolour, citecolor=linkcolour}
@@ -47,11 +49,29 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[chapter]
 
+
+\theoremstyle{notebook}
+\newtheorem{notebook}{Notebook}[chapter]
+
 \theoremstyle{remark}
 \newtheorem{ex}{Example}[chapter]
 \newtheorem{remark}[theorem]{Remark}
 
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} % to number specific equations
+
+
+\newcommand{\notebookbox}[2][0.9\textwidth]{
+  \par\noindent\tikzstyle{mybox} = [draw=amber,fill=gray!17,
+   thick,rectangle,rounded corners,inner sep=6pt]
+  \begin{tikzpicture}
+    \node [mybox] (box){%
+    \begin{minipage}{#1}{#2}\end{minipage}
+   };
+  \end{tikzpicture}
+}
+
+
+
 
 \usepackage{enumitem}
 \setenumerate[1]{label=(\roman*)}

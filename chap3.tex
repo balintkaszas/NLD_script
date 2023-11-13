@@ -83,6 +83,12 @@ For a proof, we refer to Section 2 of \cite{marsden_hopf_1976}. The geometry of 
 	\caption{A sketch of the stable (red), unstable (blue), and center manifolds (green), along with their respective linear subspaces, that are invariant under the linearized dynamics. Note the existence of multiple center manifolds and the unique unstable/stable manifolds.}
 	\label{fig:mfds_def}
 \end{figure}
+\notebookbox{
+\begin{notebook}
+\href{https://drive.google.com/file/d/1FrGkWnOykPsNfLTxqbDjq0sbbLAQests/view?usp=sharing}{Approximation of stable and unstable manifolds by time-integration.}
+\end{notebook}
+}
+
 
 Notice that Theorem \ref{thm:center_mfd} does not state anything  about the asymptotic dynamics on the center manifold, in contrast to that of the unstable and stable manifolds. This means that the overall dynamics depends crucially on the center manifold. In the case when $W^u=\emptyset$, even the stability type of the fixed point is determined by $W^C(p)$. This is why it will be the subject of further investigations.
 
@@ -294,6 +300,13 @@ where $x_n \in \mathbb{R}^c$, $y_n \in \mathbb{R}^d$, $A \in \mathbb{R}^{c \time
 \end{remark}
 \end{ex}
 
+
+\notebookbox{
+\begin{notebook}
+\href{https://drive.google.com/file/d/1Xnyhw-gHSoEFCnqJjFx3XHqyvC0eKZfa/view?usp=sharing}{Computing a higher-order approximation of the center manifold.}
+\end{notebook}
+}
+
 After this example we would like to explore if the concept of the center manifold is robust, as the existence of eigenvalues with $ \textrm{Re} (\lambda_i) = 0$ is not. We will explore this in an example.
 
 \begin{ex}[Perturbing the previous example]
@@ -438,6 +451,14 @@ This can then be applied to the perturbed example from above.
 \end{ex}
 From this example we may still wonder what effect the higher order terms have on the center manifold.
 
+
+\notebookbox{
+\begin{notebook}
+\href{https://drive.google.com/file/d/1RaglxlgQxZlODypjVauC9b4PKBLxChe4/view?usp=sharing}{Computing the parameter-dependent center manifold.}
+\end{notebook}
+}
+
+
 \section{Normal forms}
 For a general treatment see \cite{GuckenheimerHolmes}, here we will consider one example to illustrate the idea originally coming from Poincaré.
 
@@ -517,6 +538,7 @@ Thus
 is the \emph{normal form} for the ODE for the study of bifurcations at the origin for $0 \leq \mu \ll 1$. It is topologically equivalent to the full system near $x=0$ and captures the pitchfork bifurcation.
 \end{ex}
 
+
 \section{Bifurcations}
 A \emph{bifurcation} is a qualitative change in the dynamical system
 \begin{align}
@@ -568,6 +590,12 @@ This idea of nongeneric families motivates our next definition, which is also de
 
 \section{Codimension 1 bifurcations}
 We begin by considering different types of center manifolds. We start by classifying these by the number of zero eigenvalues which appear in the linearization.
+\notebookbox{
+\begin{notebook}
+\href{https://drive.google.com/file/d/1vAAd-4PYvSKJ79oi85Zm_ldpBo8Hws20/view?usp=sharing}{Illustration of one- and two-dimensional normal forms.}
+\end{notebook}
+}
+
 \begin{enumerate}
 	\item \textbf{Single zero eigenvalue} Our system is as follows
 		\begin{align}
@@ -796,6 +824,11 @@ From here we explore two cases for the signs of $d_0$ and $a_0$.
 		\end{itemize}
 		
 \end{enumerate}
+\notebookbox{
+\begin{notebook}
+\href{https://drive.google.com/file/d/1Q_4xQBWN-GS3ZaC-zTQMSCgyxEfEPvEC/view?usp=sharing}{Illustration of codimension-1 bifurcations.}
+\end{notebook}
+}
 
 \begin{exercise}
 Consider a dynamical system that has a pair of purely imaginary eigenvalues at its fixed point for the parameter value $\mu=0$. As we have seen, a linear change of coordinates and a center manifold reduction gives the two-dimensional reduced dynamical system
@@ -841,4 +874,8 @@ where $m$ is the mass of the oscillator, $g$ is the constant of gravity, $\beta>
 %\item Pick parameter values for which a stable limit cycle coexists with the stable equilibrium (close to the bifurcation point, i.e., for $v_0>0$ small). For these parameter values, plot trajectories in the phase space to illustrate the two competing stable behaviors. Also plot the limit cycle amplitude you obtained from your normal form calculation, and compare your numerical and analytical results. 
 \end{enumerate}
 \end{exercise}
-
+\notebookbox{
+\begin{notebook}
+\href{https://drive.google.com/file/d/1syTb7fS939TlK6CEcVJyfsAoAyC35ijd/view?usp=sharing}{Hopf bifurcation in the stick-slip oscillator.}
+\end{notebook}
+}
