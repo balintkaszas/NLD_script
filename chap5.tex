@@ -71,10 +71,17 @@ Importantly, the stability of $x=0$ can be studied as the stability of the $x=0$
 
 Floquet theory tells us that the following holds in general
 \begin{align}
+\label{eq:floquet_statement}
 	\boxed{
 		\Phi_{t_0}^{t} = {B(t)} e^{\Lambda(t-t_0)};\quad B(t+T) = B(t)\in \mathbb{R}^{n\times n};\quad \Lambda \in \mathbb{R}^{n\times n}  \textrm{ is constant} .
 	}
 \end{align}
+Note, that \eqref{eq:floquet_statement} implies that $B(t_0)=\mathbb{I}$, since $B(t_0)=\Phi_{t_0}^{t_0}=\mathbb{I}$. Therefore, the Poincaré-map $P_{t_0}$ can be written as 
+\begin{equation}
+\label{eq:poincare_map_def_}
+P_{t_0} = e^{\Lambda T}.
+\end{equation}
+According to \eqref{eq:poincare_map_def_}, the Floquet-multipliers are the eigenvalues of $e^{\Lambda T}$, which motivates the following definition. 
 \begin{definition}[Floquet exponents]
 	The eigenvalues of $\Lambda$ are $\lambda_1,\ldots,\lambda_n\in \mathbb{C}$ and they are called \emph{Floquet exponents}. The previously defined Floquet multipliers are related to $\lambda_j$ as 
 	\begin{align}
@@ -113,17 +120,17 @@ Now we can compare the arguments of the exponential functions to derive
 Therefore our claim holds due to the case differentiation for stability above.  Thus we can verify the stability without the numerical solution of \eqref{eq6:homo}.
 \end{proof}
 \begin{remark}[]
-	The change of variables $x = P(t)y$, for some matrix $P(t)$ transforms the system \eqref{eq6:homo} into the form $\dot{y}=By$, an autonomous linear ODE.
+	The change of variables $x = B(t)y$, with the matrix defined as in \eqref{eq:floquet_statement}, transforms the system \eqref{eq6:homo} into the form $\dot{y}=\Lambda y$,  which is an autonomous linear ODE.
 	
-	Carrying out the change of coorinates, we obtain that
+	Carrying out the change of coordinates, we obtain that
 	\begin{align}
-		\dot{y} = P^{-1} (A(t)P - \dot{P})y.
+		\dot{y} = B^{-1} (A(t)B - \dot{B})y.
 	\end{align}
 But
 \begin{align}
-	\frac{d}{dt}\left( P(t)e^{Bt}\right) = APe^{Bt} \implies \dot{P} + PB = AP.
+	\frac{d}{dt}\left( B(t)e^{\Lambda t}\right) = ABe^{\Lambda t} \implies \dot{B} + B\Lambda  = AB.
 \end{align}
-Together this implies $\dot{y} = By$.
+Together this implies $\dot{y} = \Lambda y$.
 \end{remark}
 
 \section{Averaging}

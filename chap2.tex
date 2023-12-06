@@ -480,7 +480,7 @@ Consider two autonomous dynamical systems:
 		\end{align*} 
 	\item	
 		\begin{align}
-			\dot{{x} }=g({x}),\quad {x} \in \mathbb{R}^{n}, \quad g \in \mathcal{C}^{1};\quad G^{t}: {x_0} \mapsto {x} (t;{x} _0).
+			\dot{{y} }=g({y}),\quad {y} \in \mathbb{R}^{n}, \quad g \in \mathcal{C}^{1};\quad G^{t}: {y_0} \mapsto {y} (t;{y} _0).
 		\end{align}
 \end{enumerate}
 The two dynamical systems are \emph{$\mathcal{C}^k$ equivalent}, for $k \in \mathbb{N}$, on an open set $U \subset \mathbb{R}^{n}$, if there exists a $\mathcal{C}^k$ diffeomorphism $h: U \to U$ that maps orbits of (i) into orbits of (ii), while preserving the orientation but not necessarily the exact parameterization of the orbit by time. Specifically for all $x\in U$, any $t _1 \in \mathbb{R}$  there exists a $t_2 \in \mathbb{R}$ such that
@@ -505,7 +505,7 @@ $h:U\to U$ does this for all $x\in U$ in a $\mathcal{C}^{k}$ fashion. This equiv
 	\begin{align}
 		Dh DF^{t} = \dot{G}^{\tau }\frac{d \tau }{dx} + D G^{\tau} Dh.
 	\end{align}
-	At a fixed point $x_0$ we have that $\dot{G}^{\tau}(x_0)=g(G^{\tau}(x_0))=0$. This implies that the first term on the right hand side of the differentiated equality is equal to 0. Now denote the linearizations of $f$ and $g$ at the fixed point by $A=Df(x_0)$ and $B=Dg(h(x_0))$ respectively. Then the matrices $e^{A t} $ and $e^{B\tau} $ must be similar matrices, in turn implying that $ At$ and $B\tau(x_0,t)$ must have the same spectrum, i.e.
+	At a fixed point $x_0$ we have that $y_0=h(x_0)$ and hence $\dot{G}^{\tau}(h(x_0))=g(G^{\tau}(h(x_0)))=0$. This implies that the first term on the right hand side of the differentiated equality is equal to 0. Now denote the linearizations of $f$ and $g$ at the fixed point by $A=Df(x_0)$ and $B=Dg(h(x_0))$ respectively. Then the matrices $e^{A t} $ and $e^{B\tau} $ must be similar matrices, in turn implying that $ At$ and $B\tau(x_0,t)$ must have the same spectrum, i.e.
 	\begin{align}
 		\frac{\lambda_i(B)}{\lambda_i(A)} = \frac{t}{\tau(x_0,t)} = C =  \textrm{const.}  >0. 
 	\end{align}
