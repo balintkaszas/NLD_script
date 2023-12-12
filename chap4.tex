@@ -169,7 +169,7 @@ We now introduce two theorems which give us more insight into these limit sets.
 	If $x(t;x_0)$ is bounded, then $\omega(x_0)$ and $\alpha(x_0)$ must be one of the following 
 	\begin{enumerate}
 		\item A connected set of fixed points,
-		\item A limit cycle,
+		\item A closed orbit,
 		\item A set of fixed points and their homo-/heteroclinic orbits (illustrated in Fig. \ref{fig:poincare-bendixon}).
 	\end{enumerate}
 	There is no complex (chaotic) liminting behavior in 2-dimensional autonomous nonlinear systems. 
@@ -198,11 +198,11 @@ We now introduce two theorems which give us more insight into these limit sets.
 	
 \end{remark}
 \begin{remark}[]
-	A consequence of the Poincaré-Bendixon Theorem is that a forward-invariant, bounded open set without fixed points \underline{must} contain a limit cycle. This is due to the elimination of possibilities (i) and (iii) in the theorem. An example of such a set is shown in Fig. \ref{fig:PB_consequence}.
+	A consequence of the Poincaré-Bendixon Theorem is that a forward-invariant, bounded open set without fixed points \underline{must} contain a closed orbit. This is due to the elimination of possibilities (i) and (iii) in the theorem. An example of such a set is shown in Fig. \ref{fig:PB_consequence}.
 	\begin{figure}[h!]
 		\centering
 		\includegraphics[width=0.35\textwidth]{figures/ch4/11PB_consequence.pdf}
-		\caption{A forward-invariant, bounded open set without fixed points as in the remark. Such a set must contain a limit cycle.}
+		\caption{A forward-invariant, bounded open set without fixed points as in the remark. Such a set must contain a closed orbit.}
 		\label{fig:PB_consequence}
 	\end{figure}
 \end{remark}
@@ -237,7 +237,7 @@ And further assume
  \begin{align}
 	  x\in U \implies  \nabla \cdot  f(x) \neq 0.
 \end{align}
-This in turn implies $\nabla \cdot f(x)$ has constant sign on $U$. Then there cannot exist a limit cycle in $U$.
+This in turn implies $\nabla \cdot f(x)$ has constant sign on $U$. Then there cannot exist a closed orbit in $U$.
 \end{proposition}
 \begin{proof}
 	Assume, towards a contradiction, that there exists a closed orbit $\Gamma$ of period $\tau$. Calculate 
@@ -256,7 +256,7 @@ On the other hand we have by Green's Theorem
 Here, $\Gamma^{\degree}$ denotes the interior of the area enclosed by $\Gamma$. These two equations stand in contradiction to each other, therefore no limit cycle can exist in $U$. 
 \end{proof}
 \begin{remark}[]
-	Another consequence of the Poincaré-Bendixson Theorem is that purely damped or purely forced perturbations of a conservative system cannot have limit cycles. 
+	Another consequence of the Poincaré-Bendixson Theorem is that purely damped or purely forced perturbations of a conservative system cannot have closed orbits. 
 	\begin{align}
 		f(x) =
 		\begin{dcases}
@@ -270,7 +270,7 @@ Here, $\Gamma^{\degree}$ denotes the interior of the area enclosed by $\Gamma$. 
 		\end{pmatrix}
 		=\frac{\partial g}{\partial x_2}.
 	\end{align}
-	If we assume pure damping or forcing, the divergence of $f$ cannot be 0 on any open set. If it is positive, we have pure forcing, alternatively if it is negative we have pure damping. In either case no limit cycle can exist.	
+	If we assume pure damping or forcing, the divergence of $f$ cannot be 0 on any open set. If it is positive, we have pure forcing, alternatively if it is negative we have pure damping. In either case no closed orbit can exist.	
 \end{remark}
 
 \begin{exercise}

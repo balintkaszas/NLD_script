@@ -52,7 +52,7 @@ This implies
 \end{align}
 The operator $P_{t_0}$ is called the \emph{Poincaré map} (or time $T$ map) based at $t_0$. Thus we have
 \begin{align}
-x_0(t_0+nT) = \underbrace{P_{t_0} \ldots P_{t_0}}_{n  \textrm{ times} } = P_{t_0}^{n}x_0.
+x(t_0+nT) = \underbrace{P_{t_0} \ldots P_{t_0}}_{n  \textrm{ times} } = P_{t_0}^{n}x_0.
 \end{align}
 The $n$-th iterate of the Poincaré map is denoted by $P_{t_0}^{n}$.
 
@@ -427,6 +427,12 @@ Next, recall that $x(t) = u(t) \cos(\omega t) - v(t) \sin(\omega t) = r(t)\cos(\
 	\label{fig:forced_response}
 \end{figure}
 \end{ex}
+\notebookbox{
+\begin{notebook}
+\href{https://drive.google.com/file/d/1CrKsKWUDazi2EGkYDVVs_V8DQnwBd8PY/view?usp=sharing}{Computation of the forced response of the Duffing equation by averaging.}
+\end{notebook}
+}
+
 
 \begin{exercise}
 Fluid trajectories ${x}(t) = (x(t),y(t))$ in a two-dimensional time-periodic flow satisfy the differential equations
@@ -586,10 +592,16 @@ This equation now allows us plot the amplitude $A$ versus the frequency $\omega$
 	\label{fig:forced_response2}
 \end{figure}
 
+\notebookbox{
+\begin{notebook}
+\href{https://drive.google.com/file/d/1gam-55-G3O1Gf4PU65dYBPcPikZMGj7Y/view?usp=sharing}{Computation of the forced response of the Duffing equation via harmonic balance.}
+\end{notebook}
+}
+
 Unfortunately, in contrast to averaging, harmonic balance by itself does not return any stability information. We can, however, compute the Floquet multipliers of the periodic orbit by directly solving the equation of variations. 
 
 \begin{ex}[Unforced and undamped Duffing oscillator]
-	For unforced systems harmonic balance can also be used to obtain internally parameterized periodic orbits. However, the expected period is a priori unknown. Consider the following
+	For unforced systems harmonic balance can also be used to obtain internally parametrized periodic orbits. However, the expected period is a priori unknown. Consider the following
 	\begin{align}
 		 \ddot{x} + \omega _0^2 x + \alpha x^3 = 0.
 	\end{align}

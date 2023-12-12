@@ -342,7 +342,7 @@ However, constructing such Koopman eigenfunctions is generally a very difficult 
 \section{Stability of fixed points in autonomous linear systems}
 First we note that we can bound our solution
 \begin{align*}
-	\| {y} (t) \| = \| \phi(t) {y} _0 \| \leq \underbrace{\| \phi(t) \|}_{ \textrm{Operator norm} } \| {y}_0 \| \leq C e^{\mu t} \| {y} _0 \|. \numberthis \label{eq:1star}
+	\| {y} (t) \| = \| \phi(t) {y} _0 \| \leq  \left( \underbrace{\| \phi(t) \|}_{ \textrm{Operator norm} } \cdot \ \| {y}_0 \| \right) \leq C e^{\mu t} \| {y} _0 \|. \numberthis \label{eq:1star}
 \end{align*}
 Where $\mu = \max_j ( \textrm{Re} \lambda_j) + \nu $, with $\nu >0$, as small as needed, provided we increase $C$ appropriately. If ${A} $ is semisimple, then $\nu =0$ can be selected.
 \begin{theorem}[Stability of fixed points in linear systems] \label{thm:lin_stab_eigv}
@@ -816,7 +816,7 @@ A more refined linearization result comes from Sternberg's Theorem \cite{Chicone
 Assume the following
 \begin{enumerate}
 	\item The fixed point is asymptotically stable, i.e. $ \textrm{Re} \lambda _j<0$ for all $j=1,\ldots,n$ (this also implies hyperbolicity);
-	\item $f\in \mathcal{C}^{r}$ for $r\in \mathbb{N}\cup \{\infty \}$ and $r>\frac{\max_{j}| \textrm{Re} \lambda _j|}{\min_{j}| \textrm{Im} \lambda _j|}$;
+	\item $f\in \mathcal{C}^{r}$ for $r\in \mathbb{N}\cup \{\infty \}$ and $r>\frac{\max_{j}| \textrm{Re} \lambda _j|}{\min_{j}| \textrm{Re} \lambda _j|}$;
 	\item The system is nonresonant, i.e. 
 		\begin{align}
 			\sum_{j=1}^{n}m_j \lambda _j \neq \lambda_k,\ \forall k
@@ -829,7 +829,7 @@ Then the following holds: $\dot{x}=f(x)$ with $f(0)=0$ is locally $\mathcal{C}^{
 
 \notebookbox{
 \begin{notebook}
-Calculation of the linearizing transformation as described by Sternberg's theorem.
+\href{https://drive.google.com/file/d/1wA3m8bziiIVu5xwW8LotCE8mG5AQwRXE/view?usp=sharing}{Calculation of the linearizing transformation as described by Sternberg's theorem.}
 \end{notebook}
 }
 
@@ -950,7 +950,7 @@ These have the effect of pushing the eigenvalues to the right in the complex pla
 \end{ex}
 \notebookbox{
 \begin{notebook}
-Analysis of the equations of motion for Watt's governor.
+\href{https://drive.google.com/file/d/1i-ev2ZDkV0GgcCnUb6I6AWtSRdMToBoX/view?usp=sharing}{Analysis of the equations of motion for Watt's governor.}
 \end{notebook}
 }
 \newpage
@@ -1154,7 +1154,7 @@ Consider the same dynamical system. Assume
 \end{figure}
 
 \begin{remark}[]
-	In each of these theorems, the definiteness of $ \dot{V}$ can be replaced by semidefiniteness, if we add that the set $\{x\in U:\ \dot{V}(x)=0 \}$ does not contain full trajectories of the system. This is called Krasovsky's condition.
+	In each of these theorems, the definiteness of $ \dot{V}$ can be replaced by semidefiniteness, if we add that the set $\left\{x\in U-\{x_0\}:\ \dot{V}(x)=0 \right\}$ does not contain full trajectories of the system. This is called Krasovsky's condition.
 \end{remark}
 
 Now we would like to put these theorems into practice with a few examples.
@@ -1166,7 +1166,7 @@ Now we would like to put these theorems into practice with a few examples.
 Now we will use the energy as a Lyapunov function, which is often very useful. The energy is given by
 \begin{align}
 	E(x) = E(\varphi, \dot{\varphi}) = \frac{1}{2}ml^2 \dot{\varphi}^2 + mgl(1-\cos(\varphi)) 
-	= \frac{1}{2}ml^2 \dot{x_2}^2 + mgl(1-\cos(x_1)).
+	= \frac{1}{2}ml^2 x_2^2 + mgl(1-\cos(x_1)).
 \end{align}
 Transforming the dynamical system to be an system of first order ODEs we obtain
 \begin{align}
@@ -1190,7 +1190,7 @@ Transforming the dynamical system to be an system of first order ODEs we obtain
 \end{align}
 At the fixed point $x=(0,0)$ we have
 \begin{align}
-	E(0,0) = 0;\quad DE(0,0) = 0\in \mathbb{R}^{2\times 2};\quad D^2E(0,0) =
+	E(0,0) = 0;\quad DE(0,0) = 0\in \mathbb{R}^{2};\quad D^2E(0,0) =
 \begin{pmatrix}
 	mgl & 0 \\
 	0 & ml^2
@@ -1210,9 +1210,9 @@ We have that the Hessian of $E$ is positive definite. Therefore $E$ is positive 
 \end{align}
 Thus $\dot{E}$ is negative semidefinite. Now the hypotheses of Theorem \ref{thm:direct} are fulfilled, hence $x=(0,0)$ is Lyapunov stable. Importantly, this is a nonlinear result and we did not need to refer to the linearization of the system!
 
-At the fixed point $x = (\pi, 0)$. We check again using the energy. First we realize that $E(\pi, 0)= 2mgl$, so we subtract the constant and redefine to obtain $\tilde{E}= E - 2mgl$. Now $\tilde{E}(\pi, 0) = 0$, although this is not essential. Next we calculate
+At the fixed point $x = (\pi, 0)$. We check again using the energy. First we realize that $E(\pi, 0)= 2mgl$, so we subtract the constant and redefine the function to obtain $\tilde{E}= E - 2mgl$. Now $\tilde{E}(\pi, 0) = 0$, although this is not essential. Next we calculate
 \begin{align}
-	DE(\pi, 0) = 0\in \mathbb{R}^{n\times n};\quad D^2E(\pi, 0) = 
+	DE(\pi, 0) = 0\in \mathbb{R}^{2};\quad D^2E(\pi, 0) = 
 	\begin{pmatrix}
 		-mgl & 0 \\
 		0 & ml^2
@@ -1223,7 +1223,7 @@ Hence, $E$ is indefinite at $(\pi, 0)$. From the previous calcuation we alread k
 
 If we add damping the dynamics becomes
 \begin{align}
-	m\ell^2 \ddot{\varphi} + c \dot{\varphi} mg\ell \sin(\varphi) =0.
+	m\ell^2 \ddot{\varphi} + c \dot{\varphi} + mg\ell \sin(\varphi) =0.
 \end{align}
 Again we transform the system by introducing the coordinates $x_1 =\varphi$ and $x_2=\dot{\varphi}$. Thus we have a first order ODE
 \begin{align}
@@ -1232,29 +1232,29 @@ Again we transform the system by introducing the coordinates $x_1 =\varphi$ and 
 		\dot{x_2} = - \frac{c}{m\ell^2}x_2 - \frac{g}{\ell}\sin(x_1).
 	\end{dcases}
 \end{align}
-We still have the fixed points $(0,0)$ and $(0, \pi)$ and the energy $E = \frac{1}{2}m \ell^2 \dot{\varphi}^2 + mg \ell(1 - \cos(\varphi))$. Again we find
+We still have the fixed points $(0,0)$ and $(\pi, 0)$ and the energy $E = \frac{1}{2}m \ell^2 \dot{\varphi}^2 + mg \ell(1 - \cos(\varphi))$. Again we find
 \begin{align}
-	DE =
+	DE(x_1, x_2) =
 	\begin{pmatrix}
 		mg\ell \sin(x_1) \\ m \ell^2 x_2
 	\end{pmatrix}
-	\implies DE(0) = 0;\quad
-	D^2E =
+	\implies DE(0,0) = 0;\quad
+	D^2E(x_1, x_2) =
 	\begin{pmatrix}
 		mg\ell \cos(x_1) & 0 \\
 		0 & m \ell^2
 	\end{pmatrix}
 	.
 \end{align}
-Thus $E$ is positive definite at $(0,0)$ and indefinite at $(0, \pi )$. We have
+Thus $E$ is positive definite at $(0,0)$ and indefinite at $( \pi,0 )$. We have
 \begin{align}
-	\dot{E} = DE \cdot f = mgl \sin(x_1)x_2 + m\ell^2 x_2 \left(-\frac{c}{m\ell^2}x^2 - \frac{g}{\ell}\sin(x_1)\right) = - cx_2^2.
+	\dot{E} = \langle DE, f\rangle  = mgl \sin(x_1)x_2 + m\ell^2 x_2 \left(-\frac{c}{m\ell^2}x_2 - \frac{g}{\ell}\sin(x_1)\right) = - cx_2^2.
 \end{align}
-Note here that $\dot{E}= -cx_2^2$ is only negative semi-definite. Therefore the asymptotic stability of $x=(0,0)$ and the instability of $x=(0,\pi )$ do not follow from theorems 1 or 4. However, the set $S=\left\{x:\ \dot{E}(x)=0\right\} - \left\{(0,0),\ (0,\pi )\right\}$ does \underline{not} contain full trajectories. Indeed
+Note here that $\dot{E}= -cx_2^2$ is only negative semi-definite. Therefore the asymptotic stability of $x=(0,0)$ and the instability of $x=(\pi,0 )$ do not follow from Theorems 1 or 4. However, the set $S=\left\{x:\ \dot{E}(x)=0\right\} - \left\{(0,0),\ (\pi,0 )\right\}$ does \underline{not} contain full trajectories. Indeed
 \begin{align}
 	\left.\frac{d}{dt}x_2(t)\right|_{x=0} = -\frac{g}{\ell}\sin(x_1) \neq 0,\ x\in S.
 \end{align}
-Hence, the asymptotic stability of $(0,0)$ and instability of $(0,\pi )$ follows by Krasovsky's condition.
+Hence, the asymptotic stability of $(0,0)$ and instability of $(\pi, 0)$ follow by Krasovsky's condition.
 \end{ex}
  \begin{ex}[Stability analysis of the friction pendulum]
 	 We have a shaft which is constantly rotating with angular speed $\Omega $, around this shaft is a sleeve which rubs against the shaft creating friction. To this sleeve is a mass $m$ attached at distance $l$, the deflection of this mass from its standard position (directly below the shaft) is measured by $\varphi$. The gravity constant is given by $g$. This setup is depicted in Fig. \ref{fig:friction_pend}.
