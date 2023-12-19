@@ -295,6 +295,23 @@ And now we can use the Implicit Function Theorem to conclude.
 	\end{figure}
 	
 \end{ex}
+\begin{remark}
+The mathematical theory of averaging can be extended to more general nonaoutonomous systems, as long as they are slowly varying. Consider the ODE
+\begin{equation}
+\label{chap5:eq_averaging_general}
+\dot{x} = \varepsilon f(x, t, \varepsilon), \quad x\in \mathbb{R}^n, \quad 0\leq |\varepsilon| \ll 1 
+\end{equation}
+and assume that 
+\begin{equation}
+\bar{f}^{0}(y) = \lim_{T\to \infty }\frac{1}{T}\int_{t_0}^{t_0+T}f(y, t, 0) dt \quad \text{exists and is finite.}
+\end{equation}
+Then the averaging principle, as defined above, applies to the system \eqref{chap5:eq_averaging_general}. Special cases, in which this condition is satisfied, include 
+\begin{align} 
+&f(x, \omega t, \varepsilon) \quad \text{periodic time dependence}, \\
+&f(x, \omega_1 t, \omega_2t, ..., \omega_k t, \varepsilon) \quad \text{quasiperiodic time dependence}.
+\end{align}
+For further details, we refer to Theorem 5.1 from the textbook \cite{Verhulst2023}.
+\end{remark}
 \begin{ex}[Averaged system with a limit cycle]
 	Consider the averaged system with a limit cycle $\Gamma_0$. The non-averaged system also has a stable limit cycle $\Gamma_\varepsilon$ with $ \textrm{dim }W^{S}(\Gamma_\varepsilon) =\mathbb{R}^{n+1} $ in extended phase space. Thus in the full system we have an attracting 2-dimensional invariant torus. The averaged and non-averaged system, along with this torus are shown in Fig. \ref{fig:avg_ex_3}.
 	\begin{figure}[h!]
