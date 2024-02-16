@@ -63,6 +63,12 @@ Haller, G. (2001).
   three-dimensional fluid flows.
 \newblock {\em Physica D: Nonlinear Phenomena}, 149(4):248--277.
 
+\bibitem[Haller, 2023]{Haller2023}
+Haller, G. (2023).
+\newblock {\em Transport {Barriers} and {Coherent} {Structures} in {Flow}
+  {Data}: {Advective}, {Diffusive}, {Stochastic} and {Active} {Methods}}.
+\newblock Cambridge University Press, 1 edition.
+
 \bibitem[Haller and Ponsioen, 2016]{Ponsioen2016}
 Haller, G. and Ponsioen, S. (2016).
 \newblock Nonlinear normal modes and spectral submanifolds: existence,
@@ -126,7 +132,7 @@ Ponsioen, S., Pedergnana, T., and Haller, G. (2018).
 
 \bibitem[Rouche et~al., 1977]{LiapunovDirect}
 Rouche, N., Habets, P., and Laloy, M. (1977).
-\newblock {\em Stability Theory by Liapunov’s Direct Method}.
+\newblock {\em Stability Theory by Liapunov's Direct Method}.
 \newblock Springer New York, NY.
 
 \bibitem[Saari and Urenko, 1984]{SaariUrenko}
@@ -166,6 +172,11 @@ Sun, P., Colagrossi, A., Marrone, S., and Zhang, A. (2016).
 \bibitem[Verhulst, 1989]{Verhulst}
 Verhulst, F. (1989).
 \newblock {\em Nonlinear Differential Equations and Dynamical Systems}.
+\newblock Springer.
+
+\bibitem[Verhulst, 2023]{Verhulst2023}
+Verhulst, F. (2023).
+\newblock {\em A Toolbox of Averaging Theorems}.
 \newblock Springer.
 
 \bibitem[Volterra, 1926]{Volterra1926}

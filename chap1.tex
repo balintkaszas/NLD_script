@@ -3,6 +3,7 @@
 \section{Existence and uniqueness of solutions}
 Consider  
 \begin{align}
+\label{eq:ivp1}
 \begin{dcases}
 	\dot{ {x}} = f( {x},t); &  {x} \in \mathbb{R}^{n} \\
 	 {x}(t_0) =  {x}_0
@@ -285,25 +286,62 @@ This means, that the flow map gradient satisfies the IVP
 \end{align}\end{subequations}
 This is called the equation of variations, which is a linear, non-autonomous ODE for the matrix $M = DF_{t_0}^{t}(x_0)$
 \begin{align}
+\label{eq:equation_of_variations}
 	\begin{dcases}
 		\dot{M} = D_ {x} f( {x}(t; t_0,  {x}_0)) M \\ M(t_0) = I.
 	\end{dcases}
 \end{align}
-
-\begin{ex}[Locations of extreme deformation in phase space]
-	We define 
-	\begin{subequations}	\begin{align}
-		 {\xi}(t) &:= \tilde{ {x}}(t) -  {x}(t) =  {x}(t; t_0, \tilde{ {x}}_0) -  {x}(t; t_0,  {x}_0)\\
-		       &=  {x}(t; t_0,  {x}_0) + \frac{\partial  {x}}{\partial  {x}_0}(t; t_0,  {x}_0) {\xi}_0 + \mathcal{O}( \| {\xi}_0 \|^2) -  {x}(t; t_0,  {x}_0) \\
+A related question is the evolution of infinitesimal perturbations under the flow. Consider two solutions of \eqref{eq:ivp1} started close to each other, from initial conditions $x_0$ and $\tilde{x}_0$.  Let their difference, for all times $t$, be denoted $\xi(t)$, i.e., we define 
+\begin{align}
+	\label{eq:xi_definition}
+		 {\xi}(t) := \tilde{ {x}}(t) -  {x}(t) =  {x}(t; t_0, \tilde{ {x}}_0) -  {x}(t; t_0,  {x}_0).
+	\end{align}
+	Assuming the initial perturbation is small, $ \| {\xi}_0 \| \ll 1$, we may Taylor-expand the solution as
+	\begin{subequations}\begin{align}
+			       {\xi}(t) &=  {x}(t; t_0,  {x}_0) + \frac{\partial  {x}}{\partial  {x}_0}(t; t_0,  {x}_0) {\xi}_0 + \mathcal{O}( \| {\xi}_0 \|^2) -  {x}(t; t_0,  {x}_0) \\
 		       &= DF_{t_0}^{t}( {x}_0) {\xi}_0 + \mathcal{O}( \| {\xi}_0 \|^2).
-	\end{align}\end{subequations}
-	Where we used the Taylor expansion and assume the perturbation to $ {x}_0$ is small, i.e. $ \| {\xi}_0 \| \ll 1$.
+		       \end{align}
+	\end{subequations}
+At leading order, perturbations to the trajectories are advected by the gradient of the flow-map. This is equivalent to saying that infinitesimal perturbation vectors also satisfy the following equation of variations 
+\begin{align}
+\label{eq:equation_of_variations_vector}
+		 \dot{{\xi}}&= D_ {x} f( {x}(t; t_0,  {x}_0)) \xi, \\ 
+		 \xi(t_0) &= \xi_0,
+\end{align}
+One can easily check via substitution, that solutions of \eqref{eq:equation_of_variations_vector} take the form 
+\begin{align}
+\label{eq:general_solution_eqvar}
+\xi(t) = DF_{t_0}^{t}(x_0) \xi_0,
+\end{align}
+indicating that we can describe the evolution of {\em any} infinitesimally small perturbation $\xi_0$ if we know the flow map gradient. 
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[width=0.5\textwidth]{figures/ch1/8dispersion.pdf}
+		\includegraphics[width=0.45\textwidth]{figures/ch1/8dispersion.pdf}
 		\caption{Illustration of the quantities $\xi_0$ and $\xi(t)$.}
 	\end{figure}
-	Therefore we have
+\begin{ex}[Solutions of the equation of variations]
+Although the equations of variations \eqref{eq:equation_of_variations} and \eqref{eq:equation_of_variations_vector} are linear, solving them requires the flow map gradient, and hence is usually not possible in closed form. We will see later, that  a numerical approximation can still be found. Exceptions to this are {\em directionally steady} dynamical systems, whose right-hand sides $f(x,t)$ in \eqref{eq:ivp1} take the special form 
+\begin{equation}
+\dot{x} = f(x,t) = \alpha(t)f_0(x),
+\end{equation}
+for some $\alpha(t)>0$. For such a dynamical system, the flow map is given by 
+\begin{equation}
+F_{t_0}^t  = \mathcal{F}_{t_0}^{\int_{t_0}^t\alpha(s) ds},
+\end{equation}
+where $\mathcal{F}_{t_0}^t$ denotes the flow map of the steady (autonomous) dynamical system with right-hand side $f_0$. For directionally steady dynamical systems, a special solution can be obtained from the {\em scaled Lagrangian velocity} 
+\begin{equation}
+\label{eq:scaled_lagr_velocity}
+\xi_1 = f_0\left[F_{t_0}^t(x_0)\right]. 
+\end{equation}
+Substituting the definition of the Lagrangian velocity \eqref{eq:scaled_lagr_velocity} into the general solution  \eqref{eq:general_solution_eqvar} results in the identity
+\begin{equation}
+\label{eq:lagrangian_velocity_solution}
+f_0\left[F_{t_0}^t(x_0)\right] =  DF_{t_0}^{t}(x_0) f_0(x_0).
+\end{equation}
+Setting $\alpha = 1$, i. e., for steady (autonomous) dynamical systems, the {\em Lagrangian velocity} satisfies the equation of variations and hence evolves in the same way infinitesimal perturbations do. Note that in this example the names of the introduced quantities, such as steady/unsteady dynamical systems and Lagrangian velocity were motivated by applications in fluid dynamics. For more details, see Chapter 2.2.8 in \cite{Haller2023}. 
+\end{ex}
+\begin{ex}[Locations of extreme deformation in phase space]
+	It is often important to {\em quantify} the deformations of phase space. Let us compute the norm of $\xi(t)$, as defined in \eqref{eq:xi_definition}. From the prior computation we know that 
 	\begin{subequations}	\begin{align}
 		 \| {\xi}(t) \|^2 &= \langle DF_{t_0}^{t}( {x}_0)  {\xi}_0, DF_{t_0}^{t}( {x}_0) {\xi}_0 \rangle + \mathcal{O}( \| {\xi}_0 \|^3) \\
 			   &= \langle  {\xi}_0, \underbrace{\left[ DF_{t_0}^{t}( {x}_0) \right]^T DF_{t_0}^{t}( {x}_0)}_{=: C_{t_0}^{t}( {x}_0)}  {\xi}_0 \rangle + \mathcal{O}( \| {\xi}_0 \|^3).
@@ -324,7 +362,7 @@ This is called the equation of variations, which is a linear, non-autonomous ODE
 The FTLE is a diagnostic quantity for Lagrangian Coherent Structures (LCS), i.e. influential surfaces governing the evolution in $P$.
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.6\textwidth]{figures/ch1/9deformation.pdf}
+	\includegraphics[width=0.45\textwidth]{figures/ch1/9deformation.pdf}
 	\caption{On the left the red ridge represents large values of $ \textrm{FTLE} _{t_0}^{t}$, on the right the green ridge the high values of $ \textrm{FTLE} _{t}^{t_0}$.}
 	\label{fig:FTLE_ridges}
 \end{figure}
@@ -441,6 +479,7 @@ Alternatively, you could write your own 4-point Runge-Kutta solver to track traj
 \section{Dependence on parameters}
 We now have the IVP
 \begin{align}
+\label{eq:ivp_mu}
 	\begin{dcases}
 		\dot{ {x}} = f( {x},t, {\mu} ) \\  {x}(t_0) =  {x}_0.
 	\end{dcases}
@@ -483,8 +522,39 @@ $. We have the extended IVP
 		\dot{ {X}} = F( {X}) \\  {X}(t_0) =  {X}_0.
 	\end{dcases} \numberthis \label{eq:ivp_param}
 \end{align*}
-Applying the previous result on regularity with respect to $ {x}_0$ to \eqref{eq:ivp_param}, we have that $f\in \mathcal{C}^{r}_{ {x}, {\mu} }$ implies that $ {X}(t) \in \mathcal{C}^{r}_{ {X}_0}$ in turn implying that $ {x}(t; t_0,  {x}_0, \cdot) \in \mathcal{C}^{r}_{ {\mu} }$. The solution is as smooth in parameters as the RHS of the dynamical system.
+Applying the previous result on regularity with respect to $ {x}_0$ to \eqref{eq:ivp_param}, we have that $f\in \mathcal{C}^{r}_{ {x}, {\mu} }$ implies that $ {X}(t) \in \mathcal{C}^{r}_{ {X}_0}$ in turn implying that $ {x}(t; t_0,  {x}_0, \cdot) \in \mathcal{C}^{r}_{ {\mu} }$. The solution is as smooth in parameters as the RHS of the dynamical system. 
 
+Similarly to the flow map gradient, we can also find an evolution equation for the derivative of the solution with respect to the parameters. Differentiating \eqref{eq:ivp_mu} with respect to $\mu$, we obtain the differential equation
+\begin{equation}
+\label{eq:eq_variations_mu}
+\frac{d}{dt}\frac{\partial x}{\partial \mu} = D_x f(x, t, \mu) \frac{\partial x}{\partial \mu} + \frac{\partial f}{\partial \mu},
+\end{equation}
+with a yet-undetermined initial condition, where we can denote the derivative of the flow map with respect to $\mu$ as 
+\begin{equation}
+\frac{\partial x(t; t_0, x_0, \mu)}{\partial \mu} = D_\mu F_{t_0}^t \in \mathbb{R}^{n\times p}. 
+\end{equation}
+
+We may also express this as the leading-order variation of $x$ as the parameter $\mu$ changes from a value $\mu_0$, i.e., 
+\begin{equation}
+x(t;t_0, x_0, \mu) = x(t;t_0, x_0, \mu_0) +  \left. D_\mu  F_{t_0}^t\right\vert_{\mu=\mu_0}(\mu - \mu_0) + \mathcal{O}(|\mu-\mu_0|^2).
+\end{equation}
+This expression also allows us to specify the required initial condition of \eqref{eq:eq_variations_mu} that is consistent with initial conditions of the IVP \eqref{eq:ivp_mu}. In particular if we require $x(t_0;t_0, x_0, \mu) = x(t_0;t_0, x_0, \mu_0)$, i.e., that the solutions at $\mu$ and $\mu_0$ start from the same initial condition $x_0$, then it follows that we must have 
+\begin{equation}
+D_\mu  F_{t_0}^{t_0} = 0 \in \mathbb{R}^{n\times p}. 
+\end{equation}
+Comparing \eqref{eq:eq_variations_mu} and \eqref{eq:equation_of_variations}, we see that the {\em homogeneous part} of \eqref{eq:eq_variations_mu} is the same as the equation of variations. This means, that we may write down the general solution of  \eqref{eq:eq_variations_mu} with the help of the flow map gradient and obtain
+\begin{equation}
+\label{eq:general_solution_eqref_mu}
+ D_\mu F_{t_0}^t = \left(D_x F_{t_0}^{t}\right) \left(D_\mu F_{t_0}^{t_0}\right) + \int_{t_0}^t D_x F_{t_0}^{s}   \frac{\partial f(x(s), s, \mu )}{\partial \mu} ds.
+\end{equation}
+In particular, if
+\begin{equation}
+D_\mu F_{t_0}^{t_0} = 0,
+\end{equation}
+this results in the solution 
+\begin{equation}
+ D_\mu F_{t_0}^t =\int_{t_0}^t D_x F_{t_0}^{s}   \frac{\partial f(x(s), s, \mu )}{\partial \mu} ds.
+\end{equation}
 \begin{ex}[Periodic Oscillations of a nonlinear springboard]
 \begin{figure}[h!]
 	\centering
