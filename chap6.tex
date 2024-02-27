@@ -45,7 +45,7 @@ For $\varepsilon =0$ driving and no damping, two homoclinic orbits arise for the
 		\label{fig:convection_cells}
 	\end{figure}
 
-	If the Rayleigh number $R_{a}$ exceeds a critical value $R_{a_{ \textrm{crit} }}$, we have a time periodic perturbation to the velocity field. The fluid trajectories have the following equations of motion
+	If the Rayleigh number $Ra$ exceeds a critical value $Ra_{ \textrm{crit} }$, we have a time periodic perturbation to the velocity field. The fluid trajectories have the following equations of motion
 	\begin{align}
 		\begin{dcases}
 			\dot{x} = u(x,y) + \varepsilon u_1(x,y,t) \\
@@ -57,7 +57,7 @@ For $\varepsilon =0$ driving and no damping, two homoclinic orbits arise for the
 	\begin{figure}[h!]
 		\centering
 		\includegraphics[width=0.4\textwidth]{figures/ch6/5convection_chaos.png}
-		\caption{Escape time from one convection cell. The number of iterations of the Poincaré map needed for escape is given by the color scale. Here $0 < \varepsilon \leq 1$.}
+		\caption{Escape time from one convection cell. The number of iterations of the Poincaré map needed for escape is given by the color scale. Here $0 < \varepsilon \ll  1$.}
 		\label{fig:convection_chaos}
 	\end{figure}
 	
@@ -159,7 +159,7 @@ Now observe that
 \begin{align}
 	d_{\varepsilon} (t_0) = 0 \iff \varepsilon \frac{M(t_0)}{\left| f^{\perp}(x^{0}(0))\right|} + \mathcal{O}(\varepsilon^2) = 0 \overset{\varepsilon \neq 0}{\iff} \underbrace{\frac{M(t_0)}{\left| f^{\perp}(x^{0}(0)) \right|} + \mathcal{O}(\varepsilon)=0}_{F(t_0, \varepsilon) = 0}.
 \end{align}
-Now we would like to know when we can find a solution $t_0(\varepsilon)$ such that $d_{\varepsilon}(t_0(\varepsilon))=0$ for $\varepsilon > 0$. To do this we use the Implicit Function Theorem. First assume that $F(\overline{t}_{0}, 0) = 0$, i.e. $M(\overline{t}_0) = 0$, and $\frac{\partial F}{\partial t_0}(\overline{t}_0), 0) \neq 0$, i.e. $\frac{\partial }{\partial t_0}M(\overline{t}_0) \neq 0$. If this condition is fulfilled the root is called \emph{transverse}.  Then there exists a unique $t_0(\varepsilon) = \overline{t}_{0} + \mathcal{O}(\varepsilon)$ which solves $F(t_0(\varepsilon), \varepsilon)=0$ for $\varepsilon \neq 0$ small enough. Also $t_0(\varepsilon)$ is smooth if $F(t_0,\cdot)$ is smooth.
+Now we would like to know when we can find a solution $t_0(\varepsilon)$ such that $d_{\varepsilon}(t_0(\varepsilon))=0$ for $\varepsilon > 0$. To do this we use the Implicit Function Theorem. First assume that $F(\overline{t}_{0}, 0) = 0$, i.e. $M(\overline{t}_0) = 0$, and $\frac{\partial F}{\partial t_0}(\overline{t}_0, 0) \neq 0$, i.e. $\frac{\partial }{\partial t_0}M(\overline{t}_0) \neq 0$. If this condition is fulfilled the root is called \emph{transverse}.  Then there exists a unique $t_0(\varepsilon) = \overline{t}_{0} + \mathcal{O}(\varepsilon)$ which solves $F(t_0(\varepsilon), \varepsilon)=0$ for $\varepsilon \neq 0$ small enough. Also $t_0(\varepsilon)$ is smooth if $F(t_0,\cdot)$ is smooth.
 
 A transverse zero for $M(t_0)$ implies that the Melnikov distance $d_{\varepsilon }(t_{0}(\varepsilon)=0$, in turn implying that the stable and unstable manifolds intersect, $W^{S}(p_{\varepsilon}^{t_0}) \cap W^{U}(p_{\varepsilon}^{t_0}) \neq \emptyset$. Therefore we have an element $q\in W^{S}(p_{\varepsilon}^{t_0}) \cap W^{U}(p_{\varepsilon}^{t_0})$, for this $q$ we also have that for every $n \in \mathbb{Z}$
 \begin{align}
@@ -243,7 +243,7 @@ The homoclinic orbit $\Gamma_0$ is contained in the $H=0$ level set of the Hamil
 \begin{subequations}
 \begin{align}
 \frac{1}{2}y^2 -\frac{1}{2}x^2+\frac{1}{4}x^4 &=0. \\
-\frac{dx}{dt}= y = \pm \sqrt{x^2-\frac{1}{2}x^2} &= F(x).
+\frac{dx}{dt}= y = \pm \sqrt{x^2-\frac{1}{2}x^4} &= F(x).
 \end{align}
 \end{subequations}
 
@@ -495,7 +495,7 @@ Hence, orbits of $f$ are taken to those of $\sigma$, with their orientation pres
 	\end{align}
 \end{remark}
 
-It is possible to classify all of the orbits of $\sigma $ in $\Sigma$, the classes and their cardinality are as follows:
+It is possible to classify a lot of the regular (periodic) orbits of $\sigma $ in $\Sigma$. The classes and their cardinality are as follows:
 \begin{enumerate}
 	\item \textbf{Fixed points} There are exactly two fixed points of $\sigma$, namely $\overline{1}\bm{.} \overline{1}$ and $\overline{2}\bm{.} \overline{2}$; 
 	\item \textbf{Period-two orbits} A single such orbit exists, that of $\overline{12}\bm{.} \overline{12}$, as $\sigma^{2}(\overline{12}\bm{.} \overline{12}) = \sigma(\overline{21}\bm{.} \overline{21} = \overline{12}\bm{.} \overline{12}$;
@@ -516,7 +516,7 @@ where $\langle i,k\rangle$ means that the integer $i$ divides the integer $k$.
 \end{exercise}
 
 
-There exists a countable infinity (i.e. the elements can be organized uniquely into an infinite countable sequence) of periodic orbits of arbitrarily high period. The countable sequence ordering can be done by listing each orbit in the row corresponding to its minimal period. An orbit of period $k$  is made up of $k$ points along that orbit. We assign a single number to the orbit by concatenating the decimal representations of the individual points along the orbit, starting from the one with the smallest value. Within a row, we can then order the periodic orbits based on the magnitudes of the concatenated numbers representing them. Thus $\overline{112}\bm{.} \overline{112}$ would go in the third row as it has the minimal period $3$, as the fixed points have period length $0$ and occupy the first row, and in the leftmost position as $\overline{112} \prec \overline{122}$. Each row has a finite number of elements, so ordering each row is not a problem. Then the complete order is done by starting with $0$ for the first element in the first row (the fixed point $\overline{1}\bm{.} \overline{1}$), then reading from left to right before continuing to the next row. This list is well defined and countably infinite, containing all of the orbits of $\sigma$.
+There exists a countable infinity (i.e. the elements can be organized uniquely into an infinite countable sequence) of periodic orbits of arbitrarily high period. The countable sequence ordering can be done by listing each orbit in the row corresponding to its minimal period. An orbit of period $k$  is made up of $k$ points along that orbit. We assign a single number to the orbit by concatenating the decimal representations of the individual points along the orbit, starting from the one with the smallest value. Within a row, we can then order the periodic orbits based on the magnitudes of the concatenated numbers representing them. Thus $\overline{112}\bm{.} \overline{112}$ would go in the third row as it has the minimal period $3$, as the fixed points have period length $1$ and occupy the first row, and in the leftmost position as $\overline{112} \prec \overline{122}$. Each row has a finite number of elements, so ordering each row is not a problem. Then the complete order is done by starting with $1$ for the first element in the first row (the fixed point $\overline{1}\bm{.} \overline{1}$), then reading from left to right before continuing to the next row. This list is well defined and countably infinite, containing all of the orbits of $\sigma$.
 
 Before further study, it is important to introduce a notion of distance on the space $\Sigma$.
 \begin{definition}
@@ -648,7 +648,7 @@ Show that any two periodic orbits of the Bernoulli shift map are connected by in
 \begin{proof}
 Without loss of generality, assume that $\delta<1$. Next, note that the maximal distance between two elements occurs when they disagree at every entry, so they have the distance
 \begin{align}
-	\sum_{i=-\infty }^{\infty } \frac{1}{2^{|i|}} = 2.
+	\sum_{i=-\infty }^{\infty } \frac{1}{2^{|i|}} =1+ 2\sum_{i=1 }^{\infty } \frac{1}{2^{|i|}} =3.
 \end{align}
 Therefore, the entire space is included in the ball $\mathcal{B}\left( \overline{1}\bm{.} \overline{1}, 2\right)$. Now to show that for any given distance $\delta $, we want to find an element $s^{*}$ such that its orbit gets $\delta$ close to every element of $\Sigma$. Let 
 \begin{align}
