@@ -280,24 +280,28 @@ Therefore, we have a canonical Hamiltonian system. In fact, all planar, autonomo
 
 \begin{ex}[Lotka-Volterra model (1925) for predator-prey interactions]
 	For more information about this model see \cite{Lotka1925, Volterra1926}. Let the size of the prey population be represented by $h(t)$ and the size of the predator population be denoted by $p(t)$. Each of these populations must be at least 0. Now for strictly positive constants $a_1$, $a_2$, $b$, and $c$ we have the following dynamics
-	\begin{align}
+	\begin{align}\label{eq:ex86}
 		\begin{dcases}
 			\dot{h} = a_1 h(1- bp) \\
 			\dot{p} = -a_2 p(1-ch).
 		\end{dcases}
 	\end{align}
-	The phase portrait of this system is depicted in Fig. \ref{fig:lotka_volterra}.
+	As we show in Exercise \ref{exercise_lotka_volterra}, this system has a first integral and \eqref{eq:ex86} can be derived from a Hamiltonian. The phase portrait of the model and the corresponding Hamiltonian are depicted in Fig. \ref{fig:lotka_volterra}.
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[width=0.5\textwidth]{figures/ch8/3lotka_volterra.pdf}
-		\caption{The phase portrait of the Lotka-Volterra dynamics, which has been used to explain the observed cycles in fish populations.}
+		\includegraphics[width=0.85\textwidth]{figures/ch8/3lotka_volterra.pdf}
+		\caption{Left: The phase portrait of the Lotka-Volterra model. The fixed point at $p=b, h=c$ and a few periodic orbits are indicated. Right: Contours of the Hamiltonian, which is derived in Exercise \ref{exercise_lotka_volterra}.}
 		\label{fig:lotka_volterra}
 	\end{figure}
-
-	This system does in fact have a first integral, and thus it is Hamiltonian.	
 \end{ex}
 
-Now that we have seen multiple examples of Hamiltonian systems, we would like to better understand what properties they all share.
+\begin{exercise}\label{exercise_lotka_volterra}
+Consider the Lotka-Volterra model \eqref{eq:ex86}.
+\begin{enumerate}
+	\item Show that system \eqref{eq:ex86} is Hamiltonian for $h,p>0$ after an appropriate rescaling of time. Find the Hamiltonian. (Hint: Rewrite \eqref{eq:ex86} as $\dot{h}=A(h,p)C(p)$, $\dot{p}=A(h,p)D(h)$ by defining the functions $A,C$ and $D$ appropriately.)
+\item Using the Hamiltonian, argue that the two species can exhibit stable coexistence, i.e., the system admits a stable fixed point. Hint: establish \emph{full nonlinear stability }for the fixed point.
+\end{enumerate}
+\end{exercise}
 
 \begin{exercise}
 Consider a dynamical system defined on the two-dimensional torus $\mathbb{T}^{2}=\mathcal{S}^{1}\times \mathcal{S}^{1}$.
@@ -332,7 +336,7 @@ Show that for any dynamical system $\dot{q}=f(q,t)$, $q\in\mathbb{R}^{n}$, one c
 
 
 \section{Properties of Hamiltonian systems}
-The setup going forward will be as follows for $n\geq 1$
+Now that we have seen multiple examples of Hamiltonian systems, we would like to better understand what properties they all share. The setup going forward will be as follows for $n\geq 1$
 \begin{align}
 	\dot{x} = JDH(x,t);\quad x=
 	\begin{pmatrix}
@@ -892,21 +896,6 @@ Each block $A_j$ corresponds to the eigenvalues $\pm i \omega _j$. There is no r
 	\caption{The product of the $n$ dynamical systems of the linearization forming the $n$-dimensional torus.}
 	\label{fig:linearization_geometry}
 \end{figure}
-
-\begin{exercise}
-Consider the Lotka-Volterra model
-\begin{align}
-	\begin{dcases}
-\dot{h} &=  a_{1}h\left(1-bp\right)\label{eq:ex86}\\
-\dot{p} &=  -a_{2}p\left(1-ch\right),
-	\end{dcases}
-\end{align}
-for the interaction of a predator and a prey population. Here $h(t)$ and $p(t)$ denote the predator and prey populations, respectively, as a function of time; $a_{1},\ a_{2},\ b,$ and $c$ are positive parameters.
-\begin{enumerate}
-	\item Show that system \eqref{eq:ex86} is Hamiltonian for $h,p>0$ after an appropriate rescaling of time. Find the Hamiltonian. (Hint: Rewrite \eqref{eq:ex86} as $\dot{h}=A(h,p)C(p)$, $\dot{p}=A(h,p)D(h)$ by defining the functions $A,C$ and $D$ appropriately.)
-\item Using the Hamiltonian, argue that the two species can exhibit stable coexistence, i.e., the system admits a stable fixed point. Hint: establish \emph{full nonlinear stability }for the fixed point.
-\end{enumerate}
-\end{exercise}
 
 Defining the vector of angular velocities $\omega=(\omega_1, \ldots, \omega_n)$ we get three cases for the structure of the orbits
 \begin{enumerate}
