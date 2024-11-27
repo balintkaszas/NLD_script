@@ -212,6 +212,7 @@ Where in $(*)$ we used that $ {x} = \sum_{i=1}^{n} x_i  {e}_i $ with $ \| {e}_i 
 \end{align}
 By exponentiating both sides, we obtain
 \begin{align}
+\label{eq:upper_bound_on_linear_sol}
 \boxed{  \| {x}(t) \| \leq  \| {x}(t_0)  \| \exp\left(\int_{t_0}^{t} \lambda_{ \textrm{max} }(s)ds\right).}
 \end{align}
 Therefore, by the continuation theorem, global solutions exist as long as $\int_{t_0}^{t} \lambda_{ \textrm{max} }(s) ds < \infty $.
@@ -288,7 +289,7 @@ This is called the equation of variations, which is a linear, non-autonomous ODE
 \begin{align}
 \label{eq:equation_of_variations}
 	\begin{dcases}
-		\dot{M} = D_ {x} f( {x}(t; t_0,  {x}_0)) M \\ M(t_0) = I.
+		\dot{M} = D_ {x} f( {x}(t; t_0,  {x}_0), t) M \\ M(t_0) = I.
 	\end{dcases}
 \end{align}
 A related question is the evolution of infinitesimal perturbations under the flow. Consider two solutions of \eqref{eq:ivp1} started close to each other, from initial conditions $x_0$ and $\tilde{x}_0$.  Let their difference, for all times $t$, be denoted $\xi(t)$, i.e., we define 
@@ -355,7 +356,7 @@ Setting $\alpha = 1$, i. e., for steady (autonomous) dynamical systems, the {\em
 \end{ex}
 \begin{definition}
 	The finite-time Lyapunov exponent is defined as
-	\begin{align}
+	\begin{align}\label{eq:ftle_def}
 		\boxed{ \textrm{FTLE} _{t_0}^{t}( {x}_0) := \frac{1}{2|t-t_0|} \log(\lambda_n( {x}_0)).}
 	\end{align}
 \end{definition}
@@ -391,7 +392,8 @@ The ridges of $ \textrm{FTLE} _{t_0}^{t}$ are the repelling LCS, meanwhile the r
 		\end{pmatrix}
 		.
 		\end{align}
-		
+		\item Compute the Cauchy-Green strain tensor $C_{t_0}^t\left( x_0(i,j)\right) =\left[DF_{t_0}^{t}\right]^TDF_{t_0}^{t}$
+		\item Compute the leading eigenvalue of  and compute $C_{t_0}^t\left( x_0(i,j)\right)$ and the FTLE from formula \eqref{eq:ftle_def}. 
 \end{enumerate}
 This process then yields the surface we see in Fig. \ref{fig:FTLE_surface}.
 \begin{ex}[Calculating the FTLE for the double gyre]

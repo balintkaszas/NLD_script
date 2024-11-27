@@ -36,7 +36,7 @@ We would like to understand how the dynamical system behaves near its equilibriu
 	\dot{x}_2 = -\sin(x_1).
 		\end{dcases}
 	\end{align}
-	For small $\varepsilon>0$, this geometric procedure gives a $\delta(\varepsilon)>0$ such that the definition of stability is satisfied for $ {x}=0$. We can see in Fig. \ref{fig:pend_lower_stability} that for any initial point chosen within the blue circle, it's trajectory remains within the red circle for all time (cf. Fig. \ref{fig:lyapunov_stability_def}). Therefore $ {x}=0$ is (Lyapunov) stable.
+	For small $\varepsilon>0$, this geometric procedure gives a $\delta(\varepsilon)>0$ such that the definition of stability is satisfied for $ {x}=0$. We can see in Fig. \ref{fig:pend_lower_stability} that for any initial point chosen within the blue circle, its trajectory remains within the red circle for all time (cf. Fig. \ref{fig:lyapunov_stability_def}). Therefore $ {x}=0$ is (Lyapunov) stable.
 	\begin{figure}[h!]
 		\centering
 		\includegraphics[width=0.6\textwidth]{figures/ch2/2pendulum_stability.pdf}
@@ -167,9 +167,9 @@ This negation is demonstration in Fig. \ref{fig:instable_def}.
 \end{ex}
 \newpage
 \section{Stability based on linearization}
-We would like to derive a more general method to analyze the stability of fixed points, thus we try to simplify our system around the fixed point and discover what this can tell us about the full (unsimplified) system. In the following section we shall always assume that our system is autonomous. We will have the following setup
+We would like to derive a more general method to analyze the stability of fixed points, thus we try to simplify our system around the fixed point and discover what this can tell us about the full (unsimplified) system. In many of the examples to follow, the system will be autonomous, but we make no such assumption here. Let us consider then the following setup
 \begin{align*}
-	\dot{ {x}}=f( {x}),\quad f\in \mathcal{C}^1,\quad  {x}=
+	\dot{ {x}}=f( {x,t}),\quad f\in \mathcal{C}^1,\quad  {x}=
 	\begin{pmatrix}
 		x_1\\ \vdots \\ x_n
 	\end{pmatrix}\in \mathbb{R}^{n}, \quad 
@@ -180,9 +180,9 @@ We would like to derive a more general method to analyze the stability of fixed 
 \in \mathbb{R}^{n}. \numberthis \label{eq:star}
 \end{align*}
 
-If $f({p} )={0} $, then ${p} $ is a fixed point. By transforming using ${y} = {x} - {p} $, we have that in the transformed system ${y} = {0} $ is a fixed point. Furthermore, we have that around ${y} = {0} $ the ODE is 
+If ${p}$ is a constant vector such that $f({p},t)={0} $, for all time $t$, then we call ${p} $ a fixed point. We can introduce the transformation ${y} = {x} - {p} $, such that the transformed system has the fixed point ${y} = {0} $ at the origin. Furthermore, we have that around ${y} = {0} $ the ODE is 
 \begin{align}
-	\dot{{y} } = f({p} + {y} ) = \underbrace{f({p} )}_{=0} + Df({p} ){y} + o(\| {y} \|) = Df({p} ){y} + o(\| {y} \|).
+	\dot{{y} } = f({p} + {y}, t) = \underbrace{f({p},t)}_{=0} + Df({p},t ){y} + o(\| {y} \|) = Df({p},t ){y} + o(\| {y} \|).
 \end{align}
 \begin{remark}[]
 	Since we only assumed one continuous derivative for the function $f$ the remainder term in the Taylor approximation is $o(\|y\|)$. The little o notation means that 
@@ -196,16 +196,32 @@ If $f({p} )={0} $, then ${p} $ is a fixed point. By transforming using ${y} = {x
 	We define the \emph{linearization} of \eqref{eq:star} at the fixed point ${p} $ as 
 	\begin{align*}
 		\boxed{
-		\dot{{y} } = {A} {y}; \quad {y} \in \mathbb{R}^{n},\quad {A} := Df({p} ) \in \mathbb{R}_{n \times n};\quad  Df(p) = 
+		\dot{{y} } = {A}(t) {y}; \quad {y} \in \mathbb{R}^{n},\quad {A}(t) := Df({p},t ) \in \mathbb{R}_{n \times n};\quad  Df(p,t) = 
 	\left. \begin{pmatrix}
-		\frac{\partial f_1}{\partial x_1} & \ldots & \frac{\partial f_1}{\partial x_n} \\
+		\frac{\partial f_1(x,t)}{\partial x_1} & \ldots & \frac{\partial f_1(x,t)}{\partial x_n} \\
 		\vdots & & \vdots \\
-		\frac{\partial f_n}{\partial x_1} & \ldots & \frac{\partial f_n}{\partial x_n}
+		\frac{\partial f_n(x,t)}{\partial x_1} & \ldots & \frac{\partial f_n(x,t)}{\partial x_n}
 \end{pmatrix}\right|_{{x} = {p} }.} \numberthis \label{eq:sstar}
 	\end{align*}
 \end{definition}
-Now we would like to study the stability of the fixed point ${y} =0$ in \eqref{eq:sstar}. From this analysis, we want to know the relevance of our results for the full nonlinear system \eqref{eq:star}.
-
+Now we would like to study the stability of the fixed point ${y} =0$ in \eqref{eq:sstar}. From this analysis, we want to know the relevance of our results for the full nonlinear system \eqref{eq:star}. 
+\section{Stability of $y=0$ from general estimates}
+Recall the upper estimate \eqref{eq:upper_bound_on_linear_sol}, which directly applies to the linearized system \eqref{eq:sstar}. Analogously, we can derive the lower estimate
+\begin{align}
+\label{eq:lower_bound_on_linear_sol}
+\|y_0\|e^{\int_{t_0}^t\lambda_{\text{min}}[{S}(s)]ds} \leq \|y(t) \|, \quad \text{ where } S = \frac{A^T + A}{2}.
+\end{align}
+Combining \eqref{eq:lower_bound_on_linear_sol} and \eqref{eq:upper_bound_on_linear_sol}, we obtain
+\begin{align}
+\label{eq:combined_lower_bound_on_linear_sol}
+\|y_0\|e^{\int_{t_0}^t\lambda_{\text{min}}[{S}(s)]ds} \leq \|y(t) \| \leq \|y_0\|e^{\int_{t_0}^t\lambda_{\text{max}}[{S}(s)]ds},
+\end{align}
+with $\lambda_{min}[S(t)]$ and $\lambda_{max}[S(t)]$ denoting the time-dependent smallest and largest eigenvalues of the rate-of-strain tensor $S$. Let us consider the following cases
+\begin{itemize}
+\item Assume $\lambda_{max}[S(t)]<0$ for all $t\in\mathbb{R}$. In this case, $y=0$ is stable in system \eqref{eq:sstar}. We can simply select $\delta(t_0,\varepsilon) = \varepsilon$ in Definition \ref{def:stable}.
+\item Assume $\lambda_{max}[S(t)]<-K<0$ for some $K>0$ for all $t\in \mathbb{R}$. Then, $y=0$ is asymptotically stable in system \eqref{eq:sstar}, since the upper estimate converges to zero as $t\to \infty$. 
+\item Assume $\lambda_{min}[S(t)]>K>0$ for some $K>0$ for all $t\in\mathbb{R}$. Then, $y=0$ is unstable in system \eqref{eq:sstar}, because the lower estimate diverges as $t\to \infty$. 
+\end{itemize}
 \section{Review of linear dynamical systems}
 Recall the setup
 \begin{align}
@@ -628,6 +644,50 @@ In the last equality we used the Taylor expansion in $\varepsilon$. We have that
 \end{remark}
 Meanwhile, for nonhyperbolic fixed points, this is not the case, and the smallest perturbation may change their stability type. This is due to the fact, that no matter how small the scale of the perturbation ($\varepsilon$) the $\mathcal{O}(\varepsilon)$ ball around eigenvalues on the imaginary axis will always intersect with $\mathbb{C}- \{  \textrm{Im}\lambda_i =0 \}$ (i.e. points which are not on the imaginary axis).
 
+\subsection{Linearized stability for discrete dynamical systems}
+Consider the dynamical system given by the iterated map 
+\begin{equation}\label{eq:discrete_dynsys}
+x_{n+1} = f(x_n), \quad x\in \mathbb{R}^n.
+\end{equation}
+
+A fixed point $x^{0}$ satisfies 
+
+\begin{equation}
+f\left(x^0\right) = x^0. 
+\end{equation}
+
+Similarly to the continuous case, we can define the linearized system at $x^0$ by introducing the variable $y_n = x_n - x^0$. To leading order, we then have
+\begin{equation}\label{eq:linearized_discrete_dynsys}
+y_{n+1} = A y_n \quad \text{ with } A = Df\left(x^0\right). 
+\end{equation}
+
+The linear stability of the fixed point depends on the spectrum of A, which we denote as 
+\begin{equation}
+\text{spect} (A) = \{ \lambda_1, ..., \lambda_n \} \;\; \lambda_i \in \mathbb{C}. 
+\end{equation}
+As we did in the continuous case, we can differentiate three cases. 
+\begin{itemize}
+\item If $|\lambda_i|<1$, $\forall i$, then $x_n = x^0$ is asymptotically stable 
+\item If $\exists j: $ for which $|\lambda_i|>1$, then  $x_n = x^0$ is unstable
+\item If $|\lambda_i |\leq1$, $\forall i$, and for the eigenvalues $|\lambda_k|=1$ the algebraic and geometric multiplicities are the same, then  $x_n = x^0$ is stable
+\end{itemize}
+
+\begin{definition}[Hyperbolic fixed point in discrete systems]
+	We call the fixed point  ${x} ={x^0} $ a \emph{hyperbolic fixed point} of \eqref{eq:discrete_dynsys} if each of the eigenvalues $\lambda_i$ of its linearization \eqref{eq:linearized_discrete_dynsys} satisfy
+	\begin{align}
+		\boxed{ |\lambda_i | \neq 1.}
+	\end{align}
+	Geometrically the eigenvalue configuration of a hyperbolic fixed point is shown in Fig. \ref{fig:hyperbol_ex}.
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.6\textwidth]{figures/ch2/15_2hyperbol_ex}
+		\caption{The eigenvalue configuration of a hyperbolic fixed point of a discrete dynamical system, i.e. no eigenvalues are on the unit circle (red).}
+		\label{fig:hyperbol_ex}
+	\end{figure}
+\end{definition}
+
+\subsection{Nonlinear consequences of hyperbolicity}
+
 Now we would like to connect the preservation of stability type under nonlinear perturbation to analyzing the stability type of fixed points of nonlinear dynamical systems based on their linearization. 
 \begin{theorem}[Hartman-Grobman]
 	If the fixed point ${x_0} $ of the nonlinear system \eqref{eq:unostar} is hyperbolic, then the linearization \eqref{eq:dosstar} is topologically equivalent to the nonlinear system in a neighborhood of ${x_0} $. 
@@ -746,7 +806,7 @@ In the last example, the importance of hyperbolicity was not accentuated, as the
 \end{figure}
 \end{ex}
 
-Now that we have understood how to use the Hartman-Grobman theorem, we would like to to be able to definitely conclude the stability type of a fixed point, once we have the linearization. To achieve this, we require a sufficient and necessary criterion for all of the eigenvalues of the linearized system to be left of the imaginary axis, i.e. $ \textrm{Re} \lambda_i < 0$ for all $i$.
+Now that we have understood how to use the Hartman-Grobman theorem, we would like to be able to definitely conclude the stability type of a fixed point, once we have the linearization. To achieve this, we require a sufficient and necessary criterion for all of the eigenvalues of the linearized system to be left of the imaginary axis, i.e. $ \textrm{Re} \lambda_i < 0$ for all $i$.
 
 \begin{theorem}[Routh-Hurwitz]
 Consider the polynomial
@@ -1267,7 +1327,7 @@ Thus $E$ is positive definite at $(0,0)$ and indefinite at $( \pi,0 )$. We have
 \end{align}
 Note here that $\dot{E}= -cx_2^2$ is only negative semi-definite. Therefore the asymptotic stability of $x=(0,0)$ and the instability of $x=(\pi,0 )$ do not follow from Theorems 1 or 4. However, the set $S=\left\{x:\ \dot{E}(x)=0\right\} - \left\{(0,0),\ (\pi,0 )\right\}$ does \underline{not} contain full trajectories. Indeed
 \begin{align}
-	\left.\frac{d}{dt}x_2(t)\right|_{x=0} = -\frac{g}{\ell}\sin(x_1) \neq 0,\ x\in S.
+	\left.\frac{d}{dt}x_2(t)\right|_{x_2=0} = -\frac{g}{\ell}\sin(x_1) \neq 0,\ x\in S.
 \end{align}
 Hence, the asymptotic stability of $(0,0)$ and instability of $(\pi, 0)$ follow by Krasovsky's condition.
 \end{ex}
