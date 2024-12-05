@@ -68,9 +68,10 @@ We now discuss what happens to these subspaces in the nonlinear system \eqref{eq
 	 for $t\leq 0$, $0 < \varepsilon_U \ll 1$, and  $\| x- p\|$ small enough.
 	\end{itemize}
 			
-\item There exists a (not necessarily unique) \emph{center manifold} $W^{C}(p)$ for \eqref{eq:4star}, such that
+\item There exists a (not necessarily unique) \emph{center manifold} $W^{C}(p)$ for \eqref{eq:4star}, such that,
 	\begin{itemize}
-		\item $W^{C}(p)$ is a $\mathcal{C}^{r-1}$ manifold (surface), tangent to $E^{C}$ at $p$ with $ \textrm{dim } W^{C}(p) =  \textrm{dim } E^{C}$,
+		\item assuming $r\geq 2$, $W^{C}(p)$ is a $\mathcal{C}^{r-1}$ manifold (surface), tangent to $E^{C}$ at $p$ with $ \textrm{dim } W^{C}(p) =  \textrm{dim } E^{C}$,
+		\item $W^{C}(p)$ is invariant for \eqref{eq:4star}. 
 	\end{itemize}
 			
 	\end{enumerate}
@@ -537,8 +538,45 @@ Thus
 \end{align}
 is the \emph{normal form} for the ODE for the study of bifurcations at the origin for $0 \leq \mu \ll 1$. It is topologically equivalent to the full system near $x=0$ and captures the pitchfork bifurcation.
 \end{ex}
+\begin{remark}[Normal form at hyperbolic fixed points]
 
-
+\end{remark}
+Given the dynamical system 
+\begin{equation}\label{eq:f_nl_linearizing}
+\dot{x} = Ax + f(x), \quad f(x)\in \mathcal{O}(|x|^2), \quad x\in \mathbb{R}^n,
+\end{equation}
+with a hyperbolic fixed point at $x=0$, i.e. $0\not\in \{\lambda_1, \lambda_2, ...,\lambda_n\} $ holds for the eigenvalues $\lambda_j$ of $A$, the normal form transformation is a linearizing transformation. This transformation is guaranteed to exist 
+\begin{itemize}
+\item by Sternberg's Theorem \ref{thm:sternberg} for $C^\infty$-smooth systems, or
+\item by Poincaré's Theorem  for analytic systems with an asymptotically stable fixed point, i.e., $\text{Re }\lambda_j<0$.
+\end{itemize}
+Both of these results assume that the nonresonance conditions 
+\begin{equation}
+\lambda_k \neq \sum_{j=1}^n m_j \lambda_j, \quad m_j\in \mathbb{N}, \quad \sum_{j=1}^n m_j \geq 2,
+\end{equation}
+hold and ensure that all nonlinear terms can be removed by a near-identity change of coordinates (coordinate transformation). Requiring that the dynamics become fully linear in the new coordinates, denoted by $y$, we have
+\begin{equation}\label{eq:Ay_linearizing}
+\dot{y} = Ay, \quad y\in \mathbb{R}^n.
+\end{equation}
+On the other hand, the new coordinates are functions of the old ones. In addition, this relationship is invertible and near-identity near the origin $y=x=0$, therefore we have 
+\begin{equation}\label{eq:linearizing_transf_equation}
+x = y + \sum_{k_1+k_2+k_3+...+k_n\geq 2} h_{k_1, k_2, ..., k_n}y_1^{k_1}y_2^{k_2} \hdots y_n^{k_n},
+\end{equation}
+with the vector valued coefficients $h_{k_1,k_2,...,k_n}\in \mathbb{R}^n$. We can also write \eqref{eq:linearizing_transf_equation} more compactly using the {\em multiindex} notation. Let us introduce the index vector $\mathbf{k}=(k_1, k_2, ..., k_n)\in \mathbb{N}^n$ and denote the monomial terms in \eqref{eq:linearizing_transf_equation} as 
+\begin{equation}
+y^\mathbf{k} = \prod_{j=1}^n y_j^{k_j} = y_1^{k_1}y_2^{k_2} \hdots y_n^{k_n}.
+\end{equation}
+We may then write the linearizing transformation as 
+\begin{equation}\label{eq:linearizing_transformation}
+x= y + h(y) = \sum_{|\mathbf{k}|\geq 2} h_{\mathbf{k}}y^{\mathbf{k}},
+\end{equation}
+with $|\mathbf{k}| = \sum_{j=1}^n k_j$. To determine the coefficients $h_{\mathbf{k}}$ of the linearizing transformation for a given system \eqref{eq:f_nl_linearizing}, we differentiate \eqref{eq:linearizing_transformation} with respect to time and use \eqref{eq:f_nl_linearizing} and \eqref{eq:Ay_linearizing}. This gives the equation
+\begin{align}\label{eq:linearizing_computation}
+\dot{x} &= (I + Dh(y))\dot{y}=  (I + Dh(y))Ay \\ \nonumber
+\dot{x}& =A(y+h(y)) + f\left(y + h(y)\right) \\ \nonumber 
+(I + Dh(y))Ay &= A(y+h(y)) + f\left(y + h(y)\right).
+\end{align}
+Solving \eqref{eq:linearizing_computation} order-by-order as we have done with the normal form transformations, allows us to determine the coefficients $h_{\mathbf{k}}$. The computation is similar to the normal form transformations discussed above. An example can be found in Notebook \ref{notebook:sternberg}.
 \section{Bifurcations}
 A \emph{bifurcation} is a qualitative change in the dynamical system
 \begin{align}
